@@ -28,7 +28,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build
-        run: cd design/demo && flutter pub get && flutter build web
+        run: cd design/demo && flutter pub get && flutter build web --base-href "/source/"
       - name: Upload
         uses: actions/upload-pages-artifact@v2
         with:
