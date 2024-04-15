@@ -47,7 +47,7 @@ class _Main extends StatelessWidget {
                       ),
                       Switch(
                         value: Theme.of(context).brightness == Brightness.dark ? true : false,
-                        onChanged: (value) => Configurator.switchTheme(context),
+                        onChanged: null,
                       ),
                     ],
                   ),
