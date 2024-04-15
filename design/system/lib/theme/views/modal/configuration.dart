@@ -1,0 +1,33 @@
+import 'package:design/model/mixins.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+
+@immutable
+class ModalConfiguration implements ThemeComponent<ModalConfiguration> {
+  final BorderRadiusGeometry borderRadius;
+  final TextStyle textStyle;
+
+  const ModalConfiguration({
+    required this.borderRadius,
+    required this.textStyle,
+  });
+
+  @override
+  ModalConfiguration copyWith({
+    BorderRadiusGeometry? borderRadius,
+    TextStyle? textStyle,
+  }) =>
+      ModalConfiguration(
+        borderRadius: borderRadius ?? this.borderRadius,
+        textStyle: textStyle ?? this.textStyle,
+      );
+
+  @override
+  ModalConfiguration lerp(ThemeComponent<ModalConfiguration>? other, double t) {
+    if (other is! ModalConfiguration) return this;
+    return ModalConfiguration(
+      borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
+      textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
+    );
+  }
+}

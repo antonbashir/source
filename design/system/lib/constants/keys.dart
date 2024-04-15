@@ -1,0 +1,1 @@
+const carouselKey = "carousel.key";

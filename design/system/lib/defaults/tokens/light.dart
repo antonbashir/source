@@ -1,0 +1,105 @@
+part of '../defaults.dart';
+
+final _lightTokens = Tokens(
+  borders: _borders,
+  opacities: _opacities,
+  transitions: _transitions,
+  spacings: _spacings,
+  palette: _palette,
+  typography: _typography.copyWith(
+    base: _typography.base.apply(color: Colors.black),
+    dense: _typography.base.apply(color: Colors.black),
+    tall: _typography.tall.apply(color: Colors.black),
+  ),
+  shadows: const Shadows(
+    small: [
+      BoxShadow(
+        color: Color(0x66000000),
+        blurRadius: 1,
+      ),
+      BoxShadow(
+        color: Color(0x28000000),
+        blurRadius: 6,
+        offset: Offset(0, 6),
+        spreadRadius: -6,
+      ),
+    ],
+    medium: [
+      BoxShadow(
+        color: Color(0x66000000),
+        blurRadius: 1,
+      ),
+      BoxShadow(
+        color: Color(0x28000000),
+        blurRadius: 12,
+        offset: Offset(0, 12),
+      ),
+    ],
+    large: [
+      BoxShadow(
+        color: Color(0x66000000),
+        blurRadius: 1,
+      ),
+      BoxShadow(
+        color: Color(0x28000000),
+        blurRadius: 24,
+        offset: Offset(0, 8),
+      ),
+    ],
+    gigantic: [
+      BoxShadow(
+        color: Color(0x33000000),
+        blurRadius: 1,
+      ),
+      BoxShadow(
+        color: Color(0x1E000000),
+        blurRadius: 32,
+      ),
+      BoxShadow(
+        color: Color(0x14000000),
+        blurRadius: 32,
+        offset: Offset(0, 32),
+      ),
+    ],
+  ),
+  colors: Colors(
+    main: Colors.white,
+    mainContent: Colors.black38,
+    mainHover: Colors.white30,
+    mainHoverContent: Colors.white30,
+    additional: Colors.white,
+    additionalContent: Colors.black38,
+    additionalHover: Colors.white30,
+    additionalHoverContent: Colors.white30,
+    accent: const Color(0xff9822ef),
+    accentContent: Colors.black38,
+    accentHover: Colors.white30,
+    accentHoverContent: Colors.white30, hover: Colors.white30,
+    surface: const Color(0xff161719),
+    layer: const Color(0xff161719),
+    border: _gray.shade900,
+    background: Colors.white,
+    active: Colors.white60,
+    contentWeak: Colors.white,
+    contentWeakActive: Colors.white,
+    contentWeakHover: Colors.white,
+    contentMedium: Colors.white,
+    contentMediumActive: Colors.white,
+    contentMediumHover: Colors.white,
+    contentStrong: Colors.white,
+    contentStrongActive: Colors.white,
+    contentStrongHover: Colors.white,
+    overlay: Colors.white10,
+    neutral: const Color(0xff26272b),
+    scroll: const Color(0xff2d2e2f),
+    neutralContent: Colors.white,
+    information: _cyan.shade300,
+    informationContent: Colors.white,
+    success: _emerald.shade600,
+    successContent: Colors.white,
+    error: _red.shade800,
+    errorContent: Colors.white,
+    warning: _amber.shade500,
+    warningContent: Colors.white,
+  ),
+);
