@@ -1,0 +1,38 @@
+name: Demo
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    environment:
+      name: github-pages
+      url: "antonbashir.github.io/source"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.19.0
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: build
+        run: cd design/demo && flutter pub get && flutter build web
+      - name: Upload
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: demo/build/web
+      - name: Deployment
+        id: deployment
+        uses: actions/deploy-pages@v2
