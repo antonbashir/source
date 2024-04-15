@@ -130,16 +130,20 @@ class _ThemeCustomize extends StatelessWidget {
               context.palette.rose.shade400,
             ]
                 .map(
-                  (color) => Radio(
-                    activeColor: color,
-                    selected: context.colors.main == color,
-                    toggleable: false,
-                    inactiveColor: color,
-                    onChanged: (_) => Configurator.overrideTheme(
-                      context,
-                      (current) => current.mutate(
-                        current.tokens.copyWith(
-                          colors: current.tokens.colors.copyWith(main: color),
+                  (color) => Padding(
+                    padding: EdgeInsets.all(context.spacings.small),
+                    child: Radio(
+                      activeColor: color,
+                      selected: context.colors.main == color,
+                      toggleable: false,
+                      size: BreakpointSize.tiny,
+                      inactiveColor: color,
+                      onChanged: (_) => Configurator.overrideTheme(
+                        context,
+                        (current) => current.mutate(
+                          current.tokens.copyWith(
+                            colors: current.tokens.colors.copyWith(main: color),
+                          ),
                         ),
                       ),
                     ),
