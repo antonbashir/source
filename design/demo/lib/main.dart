@@ -7,7 +7,7 @@ import 'package:source_demo/views.dart';
 import 'package:creator/creator.dart';
 import 'package:design/design.dart';
 import 'package:flutter/widgets.dart';
-  
+
 void main() => Configurator.navigable(
       wrapper: (configurator) => CreatorGraph(
         observer: const DefaultCreatorObserver(
@@ -130,21 +130,12 @@ class _ThemeCustomize extends StatelessWidget {
               context.palette.rose.shade400,
             ]
                 .map(
-                  (color) => Button.icon(
-                    showPulseEffect: context.tokens.colors.main == color,
-                    size: BreakpointSize.tiny,
-                    minTouchTargetSize: 8,
-                    width: 8,
-                    height: 8,
-                    icon: Container(
-                      width: 8,
-                      height: 8,
-                      decoration: ShapeDecoration(
-                        color: color,
-                        shape: const CircleBorder(),
-                      ),
-                    ),
-                    onTap: () => Configurator.overrideTheme(
+                  (color) => Radio(
+                    activeColor: color,
+                    selected: context.colors.main == color,
+                    toggleable: false,
+                    inactiveColor: color,
+                    onChanged: (_) => Configurator.overrideTheme(
                       context,
                       (current) => current.mutate(
                         current.tokens.copyWith(
