@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/theme/composites/accordion/configuration.dart';
@@ -13,6 +14,7 @@ class Accordion<T> extends StatefulWidget {
   final bool maintainState;
   final bool showBorder;
   final bool showDivider;
+  final BorderType? borderType;
   final Widget child;
   final double? width;
   final AlignmentGeometry? expandedAlignment;
@@ -84,6 +86,7 @@ class Accordion<T> extends StatefulWidget {
     this.leading,
     this.trailing,
     this.minTouchTargetSize,
+    this.borderType,
   });
 
   bool get _selected => identityValue != null && identityValue == groupIdentityValue;
@@ -235,6 +238,7 @@ class _AccordionState<T> extends State<Accordion<T>> with TickerProviderStateMix
     final effectiveHoverEffectCurve = context.theme.effectsTheme().hover.curve;
     final effectiveTransitionDuration = widget.transitionDuration ?? context.theme.accordionTheme().style.transitionDuration;
     final effectiveTransitionCurve = widget.transitionCurve ?? context.theme.accordionTheme().style.transitionCurve;
+    final effectiveBorderType = widget.borderType ?? _effectiveAccordionConfiguration.borderType;
 
     _expansionAnimationController ??= AnimationController(duration: effectiveTransitionDuration, vsync: this);
 
@@ -311,10 +315,16 @@ class _AccordionState<T> extends State<Accordion<T>> with TickerProviderStateMix
         clipBehavior: widget.clipBehavior ?? Clip.none,
         decoration: ShapeDecoration(
           color: effectiveBackgroundColor,
-          shape: SquircleBorder(
-            side: widget.showBorder ? BorderSide(color: effectiveBorderColor) : BorderSide.none,
-            borderRadius: _effectiveBorderRadius.squircle(context),
-          ),
+          shape: switch (effectiveBorderType) {
+            BorderType.rounded => RoundedRectangleBorder(
+                side: widget.showBorder ? BorderSide(color: effectiveBorderColor) : BorderSide.none,
+                borderRadius: _effectiveBorderRadius,
+              ),
+            BorderType.squircle => SquircleBorder(
+                side: widget.showBorder ? BorderSide(color: effectiveBorderColor) : BorderSide.none,
+                borderRadius: _effectiveBorderRadius.squircle(context),
+              ),
+          },
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

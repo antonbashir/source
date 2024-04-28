@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/toast.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,7 @@ class Toast {
     ToastVariant variant = ToastVariant.neutral,
     bool persistent = true,
     bool useSafeArea = true,
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     Color? leadingBackgroundColor,
     Color? textColor,
@@ -41,6 +43,7 @@ class Toast {
     Widget? content,
     double? travelDistance,
   }) {
+    final effectiveBorderType = borderType ?? context.theme.toastTheme().configuration.borderType;
     final effectiveBorderRadius = borderRadius ?? context.theme.toastTheme().configuration.borderRadius;
     final effectiveLeadingBackgroundColor = leadingBackgroundColor ?? context.theme.toastTheme().style.leadingColors[variant]!;
     final effectiveBackgroundColor = textColor ?? context.theme.toastTheme().style.backgroundColor;
@@ -115,9 +118,10 @@ class Toast {
                         ShapeDecoration(
                           color: effectiveBackgroundColor,
                           shadows: effectiveToastShadows,
-                          shape: SquircleBorder(
-                            borderRadius: effectiveBorderRadius.squircle(context),
-                          ),
+                          shape: switch (effectiveBorderType) {
+                            BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                            BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context))
+                          },
                         ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -132,9 +136,10 @@ class Toast {
                                 padding: EdgeInsets.all(context.spacings.tiny),
                                 decoration: ShapeDecoration(
                                   color: effectiveLeadingBackgroundColor,
-                                  shape: SquircleBorder(
-                                    borderRadius: effectiveBorderRadius.squircle(context),
-                                  ),
+                                  shape: switch (effectiveBorderType) {
+                                    BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                                    BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context))
+                                  },
                                 ),
                                 child: leading,
                               ),

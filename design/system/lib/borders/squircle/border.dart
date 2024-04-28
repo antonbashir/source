@@ -6,7 +6,7 @@ import 'package:design/borders/squircle/radius.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-enum BorderAlign {
+enum SquircleBorderAlign {
   inside,
   center,
   outside,
@@ -14,16 +14,17 @@ enum BorderAlign {
 
 class SquircleBorder extends OutlinedBorder {
   final SquircleBorderRadius borderRadius;
-  final BorderAlign borderAlign;
+  final SquircleBorderAlign borderAlign;
 
   const SquircleBorder({
     super.side = SquircleBorderSide.none,
     this.borderRadius = SquircleBorderRadius.zero,
-    this.borderAlign = BorderAlign.inside,
+    this.borderAlign = SquircleBorderAlign.inside,
   });
 
   @override
-  EdgeInsetsGeometry get dimensions => switch (borderAlign) { BorderAlign.inside => EdgeInsets.zero, BorderAlign.center => EdgeInsets.zero, BorderAlign.outside => EdgeInsets.zero };
+  EdgeInsetsGeometry get dimensions =>
+      switch (borderAlign) { SquircleBorderAlign.inside => EdgeInsets.zero, SquircleBorderAlign.center => EdgeInsets.zero, SquircleBorderAlign.outside => EdgeInsets.zero };
 
   @override
   ShapeBorder scale(double t) => SquircleBorder(
@@ -56,24 +57,24 @@ class SquircleBorder extends OutlinedBorder {
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
     final innerRect = switch (borderAlign) {
-      BorderAlign.inside => rect.deflate(side.width),
-      BorderAlign.center => rect.deflate(side.width / 2),
-      BorderAlign.outside => rect,
+      SquircleBorderAlign.inside => rect.deflate(side.width),
+      SquircleBorderAlign.center => rect.deflate(side.width / 2),
+      SquircleBorderAlign.outside => rect,
     };
 
     final radius = switch (borderAlign) {
-      BorderAlign.inside => -SquircleBorderRadius.all(
+      SquircleBorderAlign.inside => -SquircleBorderRadius.all(
           SquircleRadius(
             cornerRadius: side.width,
           ),
         ),
-      BorderAlign.center => borderRadius -
+      SquircleBorderAlign.center => borderRadius -
           SquircleBorderRadius.all(
             SquircleRadius(
               cornerRadius: side.width / 2,
             ),
           ),
-      BorderAlign.outside => borderRadius
+      SquircleBorderAlign.outside => borderRadius
     };
 
     if ([radius.bottomLeft, radius.bottomRight, radius.topLeft, radius.topRight].every((x) => x.cornerSmoothing == 0.0)) {
@@ -98,7 +99,7 @@ class SquircleBorder extends OutlinedBorder {
   SquircleBorder copyWith({
     BorderSide? side,
     SquircleBorderRadius? borderRadius,
-    BorderAlign? borderAlign,
+    SquircleBorderAlign? borderAlign,
   }) =>
       SquircleBorder(
         side: side ?? this.side,
@@ -114,15 +115,15 @@ class SquircleBorder extends OutlinedBorder {
         break;
       case BorderStyle.solid:
         final adjustedRect = switch (borderAlign) {
-          BorderAlign.inside => rect.deflate(side.width / 2),
-          BorderAlign.center => rect,
-          BorderAlign.outside => rect.inflate(side.width / 2),
+          SquircleBorderAlign.inside => rect.deflate(side.width / 2),
+          SquircleBorderAlign.center => rect,
+          SquircleBorderAlign.outside => rect.inflate(side.width / 2),
         };
 
         final adjustedBorderRadius = switch (borderAlign) {
-          BorderAlign.inside => borderRadius - SquircleBorderRadius.all(SquircleRadius(cornerRadius: side.width / 2)),
-          BorderAlign.center => borderRadius,
-          BorderAlign.outside => borderRadius + SquircleBorderRadius.all(SquircleRadius(cornerRadius: side.width / 2))
+          SquircleBorderAlign.inside => borderRadius - SquircleBorderRadius.all(SquircleRadius(cornerRadius: side.width / 2)),
+          SquircleBorderAlign.center => borderRadius,
+          SquircleBorderAlign.outside => borderRadius + SquircleBorderRadius.all(SquircleRadius(cornerRadius: side.width / 2))
         };
 
         final outerPath = _getPath(

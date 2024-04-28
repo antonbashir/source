@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:design/borders/squircle/processed.dart';
 
 extension PathSquircleCornersExtensions on Path {
-  void addSmoothTopRight(ProcessedSquircleRadius radius, Rect rect) {
+  void addSmoothTopRight(SquircleProcessedRadius radius, Rect rect) {
     final width = rect.width;
     final height = rect.height;
     if (radius.radius.cornerRadius > 0) {
@@ -49,7 +49,7 @@ extension PathSquircleCornersExtensions on Path {
       ..lineTo(width, height / 2);
   }
 
-  void addSmoothBottomRight(ProcessedSquircleRadius radius, Rect rect) {
+  void addSmoothBottomRight(SquircleProcessedRadius radius, Rect rect) {
     final width = rect.width;
     final height = rect.height;
     if (radius.radius.cornerRadius > 0) {
@@ -93,7 +93,7 @@ extension PathSquircleCornersExtensions on Path {
       ..lineTo(width / 2, height);
   }
 
-  void addSmoothBottomLeft(ProcessedSquircleRadius radius, Rect rect) {
+  void addSmoothBottomLeft(SquircleProcessedRadius radius, Rect rect) {
     final width = rect.width;
     final height = rect.height;
     if (radius.radius.cornerRadius > 0) {
@@ -137,7 +137,7 @@ extension PathSquircleCornersExtensions on Path {
       ..lineTo(0, height / 2);
   }
 
-  void addSmoothTopLeft(ProcessedSquircleRadius radius, Rect rect) {
+  void addSmoothTopLeft(SquircleProcessedRadius radius, Rect rect) {
     final width = rect.width;
     final height = rect.height;
     if (radius.radius.cornerRadius > 0) {

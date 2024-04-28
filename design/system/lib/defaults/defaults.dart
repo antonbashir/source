@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/constants/buttons.dart';
 import 'package:design/constants/editors.dart';

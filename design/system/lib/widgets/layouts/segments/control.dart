@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/constants/tabs.dart';
 import 'package:design/extensions/extensions.dart';
@@ -17,6 +18,7 @@ class SegmentedControl extends StatefulWidget {
   final bool expanded;
   final TabBarDirection direction;
   final Duration? animationDuration;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final double? gap;
@@ -40,6 +42,7 @@ class SegmentedControl extends StatefulWidget {
     this.expanded = false,
     this.initialIndex = 0,
     this.direction = TabBarDirection.row,
+    this.borderType,
     this.borderRadius,
     this.animationDuration,
     this.backgroundColor,
@@ -65,6 +68,7 @@ class SegmentedControl extends StatefulWidget {
     this.expanded = false,
     this.initialIndex = 0,
     this.direction = TabBarDirection.row,
+    this.borderType,
     this.borderRadius,
     this.animationDuration,
     this.backgroundColor,
@@ -127,6 +131,7 @@ class _SegmentedControlState extends State<SegmentedControl> {
     final effectiveTransitionDuration = widget.transitionDuration ?? context.theme.segmentedControlTheme().style.transitionDuration;
     final effectiveTransitionCurve = widget.transitionCurve ?? context.theme.segmentedControlTheme().style.transitionCurve;
     final effectivePadding = widget.padding ?? effectiveSegmentControlConfiguration.padding;
+    final effectiveBorderType = widget.borderType ?? effectiveSegmentControlConfiguration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? effectiveSegmentControlConfiguration.borderRadius;
     return AnimatedOpacity(
       opacity: widget.disabled ? effectiveDisabledOpacityValue : 1,
@@ -138,11 +143,11 @@ class _SegmentedControlState extends State<SegmentedControl> {
         constraints: BoxConstraints(minWidth: effectiveHeight),
         decoration: widget.decoration ??
             ShapeDecoration(
-              color: effectiveBackgroundColor,
-              shape: SquircleBorder(
-                borderRadius: effectiveBorderRadius.squircle(context),
-              ),
-            ),
+                color: effectiveBackgroundColor,
+                shape: switch (effectiveBorderType) {
+                  BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                  BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                }),
         child: BaseSegmentedTabBar(
           gap: effectiveGap,
           animationDuration: widget.animationDuration ?? context.theme.tabBarTheme().style.animationDuration,

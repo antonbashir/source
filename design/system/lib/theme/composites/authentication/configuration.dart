@@ -1,11 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class AuthenticationCodeConfiguration implements ThemeComponent<AuthenticationCodeConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double gap;
   final double height;
@@ -14,6 +15,7 @@ class AuthenticationCodeConfiguration implements ThemeComponent<AuthenticationCo
   final TextStyle errorTextStyle;
 
   const AuthenticationCodeConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.gap,
     required this.height,
@@ -24,6 +26,7 @@ class AuthenticationCodeConfiguration implements ThemeComponent<AuthenticationCo
 
   @override
   AuthenticationCodeConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -32,6 +35,7 @@ class AuthenticationCodeConfiguration implements ThemeComponent<AuthenticationCo
     TextStyle? errorTextStyle,
   }) {
     return AuthenticationCodeConfiguration(
+      borderType: borderType ?? this.borderType,
       borderRadius: borderRadius ?? this.borderRadius,
       gap: gap ?? this.gap,
       height: height ?? this.height,
@@ -45,6 +49,7 @@ class AuthenticationCodeConfiguration implements ThemeComponent<AuthenticationCo
   AuthenticationCodeConfiguration lerp(ThemeComponent<AuthenticationCodeConfiguration>? other, double t) {
     if (other is! AuthenticationCodeConfiguration) return this;
     return AuthenticationCodeConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
       height: lerpDouble(height, other.height, t)!,

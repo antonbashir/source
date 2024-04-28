@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class ToastConfiguration implements ThemeComponent<ToastConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double horizontalGap;
   final double verticalGap;
@@ -12,6 +14,7 @@ class ToastConfiguration implements ThemeComponent<ToastConfiguration> {
   final TextStyle textStyle;
 
   const ToastConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.horizontalGap,
     required this.verticalGap,
@@ -21,6 +24,7 @@ class ToastConfiguration implements ThemeComponent<ToastConfiguration> {
 
   @override
   ToastConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? horizontalGap,
     double? verticalGap,
@@ -28,6 +32,7 @@ class ToastConfiguration implements ThemeComponent<ToastConfiguration> {
     TextStyle? textStyle,
   }) =>
       ToastConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         horizontalGap: horizontalGap ?? this.horizontalGap,
         verticalGap: verticalGap ?? this.verticalGap,
@@ -39,6 +44,7 @@ class ToastConfiguration implements ThemeComponent<ToastConfiguration> {
   ToastConfiguration lerp(ThemeComponent<ToastConfiguration>? other, double t) {
     if (other is! ToastConfiguration) return this;
     return ToastConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       horizontalGap: lerpDouble(horizontalGap, other.horizontalGap, t)!,
       verticalGap: lerpDouble(verticalGap, other.verticalGap, t)!,

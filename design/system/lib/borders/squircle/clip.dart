@@ -2,12 +2,12 @@ import 'package:design/borders/squircle/border.dart';
 import 'package:design/borders/squircle/border_radius.dart';
 import 'package:flutter/widgets.dart';
 
-class ClipSquircleRect extends StatelessWidget {
+class SquircleClipRect extends StatelessWidget {
   final SquircleBorderRadius radius;
   final Clip clipBehavior;
   final Widget? child;
 
-  const ClipSquircleRect({
+  const SquircleClipRect({
     super.key,
     required this.child,
     this.radius = SquircleBorderRadius.zero,

@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:design/borders/squircle/radius.dart';
 import 'package:design/constants/mathematic.dart';
 
-class ProcessedSquircleRadius {
+class SquircleProcessedRadius {
   final SquircleRadius radius;
   final double a;
   final double b;
@@ -14,7 +14,7 @@ class ProcessedSquircleRadius {
   final double width;
   final double height;
 
-  factory ProcessedSquircleRadius(SquircleRadius radius, {required double width, required double height}) {
+  factory SquircleProcessedRadius(SquircleRadius radius, {required double width, required double height}) {
     final maxRadius = math.min(width, height) / 2;
     final cornerSmoothing = radius.cornerSmoothing;
     final cornerRadius = math.min(radius.cornerRadius, maxRadius);
@@ -40,7 +40,7 @@ class ProcessedSquircleRadius {
     final b = (p - circularSectionLength - c - d) / 3;
     final a = 2 * b;
 
-    return ProcessedSquircleRadius._(
+    return SquircleProcessedRadius._(
       a: a,
       b: b,
       c: c,
@@ -56,7 +56,7 @@ class ProcessedSquircleRadius {
     );
   }
 
-  const ProcessedSquircleRadius._({
+  const SquircleProcessedRadius._({
     required this.a,
     required this.b,
     required this.c,
@@ -77,7 +77,7 @@ class ProcessedSquircleRadius {
     if (other is SquircleRadius) {
       return other == radius;
     }
-    if (other is ProcessedSquircleRadius) {
+    if (other is SquircleProcessedRadius) {
       return other.radius == radius;
     }
     return false;

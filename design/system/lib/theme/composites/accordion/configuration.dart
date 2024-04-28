@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,6 +13,7 @@ class AccordionConfiguration implements ThemeComponent<AccordionConfiguration> {
   final TextStyle headerTextStyle;
   final TextStyle contentTextStyle;
   final double minTouchTargetSize;
+  final BorderType borderType;
 
   const AccordionConfiguration({
     required this.borderRadius,
@@ -21,6 +23,7 @@ class AccordionConfiguration implements ThemeComponent<AccordionConfiguration> {
     required this.headerTextStyle,
     required this.contentTextStyle,
     required this.minTouchTargetSize,
+    required this.borderType,
   });
 
   @override
@@ -32,6 +35,7 @@ class AccordionConfiguration implements ThemeComponent<AccordionConfiguration> {
     TextStyle? headerTextStyle,
     TextStyle? contentTextStyle,
     double? minTouchTargetSize,
+    BorderType? borderType,
   }) =>
       AccordionConfiguration(
         borderRadius: borderRadius ?? this.borderRadius,
@@ -41,6 +45,7 @@ class AccordionConfiguration implements ThemeComponent<AccordionConfiguration> {
         headerTextStyle: headerTextStyle ?? this.headerTextStyle,
         contentTextStyle: contentTextStyle ?? this.contentTextStyle,
         minTouchTargetSize: minTouchTargetSize ?? this.minTouchTargetSize,
+        borderType: borderType ?? this.borderType,
       );
 
   @override
@@ -54,6 +59,7 @@ class AccordionConfiguration implements ThemeComponent<AccordionConfiguration> {
       headerPadding: EdgeInsetsGeometry.lerp(headerPadding, other.headerPadding, t)!,
       headerTextStyle: TextStyle.lerp(headerTextStyle, other.headerTextStyle, t)!,
       contentTextStyle: TextStyle.lerp(contentTextStyle, other.contentTextStyle, t)!,
+      borderType: other.borderType,
     );
   }
 }

@@ -9,6 +9,7 @@ final _accordionConfiguration = Breakpoints(
     headerPadding: const EdgeInsets.symmetric(horizontal: 12),
     headerTextStyle: _typography.base.titleMedium,
     contentTextStyle: _typography.base.bodyMedium,
+    borderType: BorderType.squircle,
   ),
   {
     BreakpointSize.small: AccordionConfiguration(
@@ -19,6 +20,7 @@ final _accordionConfiguration = Breakpoints(
       headerPadding: const EdgeInsets.symmetric(horizontal: 8),
       headerTextStyle: _typography.base.titleSmall,
       contentTextStyle: _typography.base.bodySmall,
+      borderType: BorderType.squircle,
     ),
     BreakpointSize.medium: AccordionConfiguration(
       borderRadius: _borders.small,
@@ -28,6 +30,7 @@ final _accordionConfiguration = Breakpoints(
       headerPadding: const EdgeInsets.symmetric(horizontal: 12),
       headerTextStyle: _typography.base.titleMedium,
       contentTextStyle: _typography.base.bodyMedium,
+      borderType: BorderType.squircle,
     ),
     BreakpointSize.large: AccordionConfiguration(
       borderRadius: _borders.small,
@@ -37,6 +40,7 @@ final _accordionConfiguration = Breakpoints(
       headerPadding: const EdgeInsets.symmetric(horizontal: 12),
       headerTextStyle: _typography.base.titleMedium,
       contentTextStyle: _typography.base.bodyMedium,
+      borderType: BorderType.squircle,
     ),
     BreakpointSize.gigantic: AccordionConfiguration(
       borderRadius: _borders.small,
@@ -46,6 +50,7 @@ final _accordionConfiguration = Breakpoints(
       headerPadding: const EdgeInsets.symmetric(horizontal: 16),
       headerTextStyle: _typography.base.titleMedium,
       contentTextStyle: _typography.base.bodyLarge,
+      borderType: BorderType.squircle,
     )
   },
 );

@@ -106,7 +106,7 @@ class SquircleBorderRadius extends BorderRadius {
 
     final result = Path();
 
-    final processedTopLeft = ProcessedSquircleRadius(
+    final processedTopLeft = SquircleProcessedRadius(
       topLeft,
       width: width,
       height: height,
@@ -114,7 +114,7 @@ class SquircleBorderRadius extends BorderRadius {
 
     final processedBottomLeft = topLeft == bottomLeft
         ? processedTopLeft
-        : ProcessedSquircleRadius(
+        : SquircleProcessedRadius(
             bottomLeft,
             width: width,
             height: height,
@@ -122,7 +122,7 @@ class SquircleBorderRadius extends BorderRadius {
 
     final processedBottomRight = bottomLeft == bottomRight
         ? processedBottomLeft
-        : ProcessedSquircleRadius(
+        : SquircleProcessedRadius(
             bottomRight,
             width: width,
             height: height,
@@ -130,7 +130,7 @@ class SquircleBorderRadius extends BorderRadius {
 
     final processedTopRight = topRight == bottomRight
         ? processedBottomRight
-        : ProcessedSquircleRadius(
+        : SquircleProcessedRadius(
             topRight,
             width: width,
             height: height,

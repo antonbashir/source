@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/constants.dart';
 import 'package:design/constants/delays.dart';
 import 'package:design/constants/text.dart';
@@ -29,6 +30,7 @@ class AuthenticationCode extends StatefulWidget {
   final MainAxisAlignment mainAxisAlignment;
   final int fields;
   final AuthenticationCodeFieldShape? fieldShape;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? authFieldCursorColor;
   final Color? selectedBorderColor;
@@ -91,6 +93,7 @@ class AuthenticationCode extends StatefulWidget {
     this.textInputAction = TextInputAction.done,
     this.keyboardType = TextInputType.visiblePassword,
     this.borderRadius,
+    this.borderType,
     this.authFieldCursorColor,
     this.selectedBorderColor,
     this.activeBorderColor,
@@ -139,6 +142,7 @@ class _AuthenticationCodeState extends State<AuthenticationCode> with TickerProv
   late FocusNode _focusNode;
   late List<String> _inputList;
 
+  late BorderType _effectiveBorderType;
   late BorderRadiusGeometry _effectiveBorderRadius;
   late Color _effectiveSelectedBorderColor;
   late Color _effectiveActiveBorderColor;
@@ -325,10 +329,16 @@ class _AuthenticationCodeState extends State<AuthenticationCode> with TickerProv
     return switch (widget.fieldShape) {
       AuthenticationCodeFieldShape.circle => CircleBorder(side: borderSide),
       AuthenticationCodeFieldShape.underline => Border(bottom: borderSide),
-      _ => SquircleBorder(
-          borderRadius: _effectiveBorderRadius.squircle(context),
-          side: borderSide,
-        )
+      _ => switch (_effectiveBorderType) {
+          BorderType.rounded => RoundedRectangleBorder(
+              borderRadius: _effectiveBorderRadius,
+              side: borderSide,
+            ),
+          BorderType.squircle => SquircleBorder(
+              borderRadius: _effectiveBorderRadius.squircle(context),
+              side: borderSide,
+            ),
+        }
     };
   }
 
@@ -512,6 +522,7 @@ class _AuthenticationCodeState extends State<AuthenticationCode> with TickerProv
 
   @override
   Widget build(BuildContext context) {
+    _effectiveBorderType = widget.borderType ?? context.theme.authenticationCodeTheme().configuration.borderType;
     _effectiveBorderRadius = widget.borderRadius ?? context.theme.authenticationCodeTheme().configuration.borderRadius;
     _effectiveBorderWidth = widget.borderWidth ?? context.tokens.borders.borderWidth;
     _effectiveGap = widget.gap ?? context.theme.authenticationCodeTheme().configuration.gap;

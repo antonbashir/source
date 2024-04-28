@@ -1,11 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double gap;
   final EdgeInsetsGeometry padding;
@@ -18,6 +19,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
   final double minTouchTargetSize;
 
   const SegmentedControlConfiguration({
+    required this.borderType,
     required this.segmentBorderRadius,
     required this.segmentGap,
     required this.height,
@@ -32,6 +34,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
 
   @override
   SegmentedControlConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? gap,
     EdgeInsetsGeometry? padding,
@@ -40,10 +43,11 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
     double? height,
     double? iconSizeValue,
     EdgeInsetsGeometry? segmentPadding,
-    TextStyle? textStyle,
+    TextStyle? segmentTextStyle,
     double? minTouchTargetSize,
   }) =>
       SegmentedControlConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         gap: gap ?? this.gap,
         padding: padding ?? this.padding,
@@ -52,7 +56,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
         height: height ?? this.height,
         iconSizeValue: iconSizeValue ?? this.iconSizeValue,
         segmentPadding: segmentPadding ?? this.segmentPadding,
-        segmentTextStyle: textStyle ?? this.segmentTextStyle,
+        segmentTextStyle: segmentTextStyle ?? this.segmentTextStyle,
         minTouchTargetSize: minTouchTargetSize ?? this.minTouchTargetSize,
       );
 
@@ -60,6 +64,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
   SegmentedControlConfiguration lerp(SegmentedControlConfiguration? other, double t) {
     if (other is! SegmentedControlConfiguration) return this;
     return SegmentedControlConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
       padding: EdgeInsetsGeometry.lerp(padding, other.padding, t)!,
