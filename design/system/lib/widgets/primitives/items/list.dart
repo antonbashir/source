@@ -150,7 +150,10 @@ class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
         propagateGesturesToChild: !widget.absorbGestures,
         autofocus: widget.autofocus,
         focusNode: _effectiveFocusNode,
-        borderRadius: effectiveBorderRadius.squircle(context),
+        borderRadius: switch (effectiveBorderType) {
+          BorderType.squircle => effectiveBorderRadius.squircle(context),
+          BorderType.rounded => effectiveBorderRadius,
+        },
         builder: (context, isEnabled, isHovered, isFocused, isPressed) {
           final isActive = isHovered || isFocused;
           _handleActiveStatus(isActive);

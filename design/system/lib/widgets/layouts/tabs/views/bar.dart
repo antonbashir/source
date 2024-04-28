@@ -461,7 +461,10 @@ class _PillTabBuilderState extends State<_PillTabBuilder> with SingleTickerProvi
       showFocusEffect: widget.tab.showFocusEffect,
       minTouchTargetSize: widget.tab.minTouchTargetSize ?? widget.barConfiguration.minTouchTargetSize,
       focusEffectColor: tab.focusEffectColor,
-      borderRadius: effectiveTabBorderRadius.squircle(context),
+      borderRadius: switch (effectiveTabBorderType) {
+        BorderType.squircle => effectiveTabBorderRadius.squircle(context),
+        BorderType.rounded => effectiveTabBorderRadius,
+      },
       cursor: widget.isSelected ? SystemMouseCursors.basic : SystemMouseCursors.click,
       builder: (context, isEnabled, isHovered, isFocused, isPressed) {
         final isActive = isEnabled && (widget.isSelected || isHovered || isPressed);

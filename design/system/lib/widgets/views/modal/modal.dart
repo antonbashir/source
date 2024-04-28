@@ -135,7 +135,7 @@ class Modal extends StatelessWidget {
                   ShapeDecoration(
                     color: effectiveBackgroundColor,
                     shape: switch (effectiveBorderType) {
-                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
                       BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
                     },
                   ),
