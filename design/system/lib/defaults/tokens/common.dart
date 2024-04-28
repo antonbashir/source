@@ -850,5 +850,5 @@ final _borders = Borders(
   large: BorderRadius.all(_radiuses.large),
   inactiveWidth: 1,
   activeWidth: 1.2,
-  type: BorderType.rounded,
+  type: BorderType.squircle,
 );
