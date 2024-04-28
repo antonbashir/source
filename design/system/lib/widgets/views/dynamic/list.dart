@@ -229,7 +229,7 @@ class _DynamicListViewState<T> extends State<DynamicListView<T>> {
                       widget.pageSize,
                       (_) => Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: context.spacings.medium, horizontal: context.spacings.large),
+                          padding: EdgeInsets.symmetric(vertical: context.spacings.tiny, horizontal: context.spacings.small),
                           child: Container(
                             height: double.infinity,
                             decoration: ShapeDecoration(
