@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/tabs.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/model/tabs.dart';
@@ -51,10 +52,16 @@ class _SidebarState extends State<Sidebar> {
     final effectiveTabBarPadding = widget.tabBarPadding ?? context.theme.sidebarTheme().configuration.tabBarPadding;
     final effectiveTabBarDecoration = widget.tabBarDecoration ??
         ShapeDecoration(
-          shape: SquircleBorder(
-            borderRadius: effectiveStyle.tabBarBorderRadius.squircle(context),
-            side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.borderWidth),
-          ),
+          shape: switch (effectiveConfiguration.tabBarBorderType) {
+            BorderType.squircle => SquircleBorder(
+                borderRadius: effectiveConfiguration.tabBarBorderRadius.squircle(context),
+                side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.borderWidth),
+              ),
+            BorderType.rounded => RoundedRectangleBorder(
+                borderRadius: effectiveConfiguration.tabBarBorderRadius,
+                side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.borderWidth),
+              )
+          },
           color: widget.tabBarBackgroundColor ?? effectiveStyle.tabBarBackgroundColor,
         );
     final bar = DecoratedBox(

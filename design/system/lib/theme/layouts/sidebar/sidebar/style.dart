@@ -12,7 +12,6 @@ class SidebarStyle implements ThemeComponent<SidebarStyle> {
   final Color selectedTextColor;
   final Color selectedTabColor;
   final Color tabBarBorderColor;
-  final BorderRadiusGeometry tabBarBorderRadius;
 
   const SidebarStyle({
     required this.tabTextColor,
@@ -23,7 +22,6 @@ class SidebarStyle implements ThemeComponent<SidebarStyle> {
     required this.transitionCurve,
     required this.transitionDuration,
     required this.tabBarBorderColor,
-    required this.tabBarBorderRadius,
   });
 
   @override
@@ -39,7 +37,6 @@ class SidebarStyle implements ThemeComponent<SidebarStyle> {
     Color? selectedTextColor,
     Color? selectedTabColor,
     Color? tabBarBorderColor,
-    BorderRadiusGeometry? tabBarBorderRadius,
   }) =>
       SidebarStyle(
         tabTextColor: tabTextColor ?? this.tabTextColor,
@@ -50,7 +47,6 @@ class SidebarStyle implements ThemeComponent<SidebarStyle> {
         transitionDuration: transitionDuration ?? this.transitionDuration,
         transitionCurve: transitionCurve ?? this.transitionCurve,
         tabBarBorderColor: tabBarBorderColor ?? this.tabBarBorderColor,
-        tabBarBorderRadius: tabBarBorderRadius ?? this.tabBarBorderRadius,
       );
 
   @override
@@ -65,7 +61,6 @@ class SidebarStyle implements ThemeComponent<SidebarStyle> {
       transitionDuration: lerpDuration(transitionDuration, other.transitionDuration, t),
       transitionCurve: other.transitionCurve,
       tabBarBorderColor: Color.lerp(tabBarBorderColor, other.tabBarBorderColor, t)!,
-      tabBarBorderRadius: BorderRadiusGeometry.lerp(tabBarBorderRadius, other.tabBarBorderRadius, t)!,
     );
   }
 }
