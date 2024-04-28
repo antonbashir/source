@@ -8,11 +8,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.6
   url_launcher: ^6.2.5
   diff_match_patch: ^0.4.1
   flutter_highlight: ^0.7.0
   web: ^0.5.1
+  intl: ^0.19.0
   sliver_tools: ^0.2.12
   flutter_staggered_grid_view: ^0.7.0
   logger: ^2.1.0
