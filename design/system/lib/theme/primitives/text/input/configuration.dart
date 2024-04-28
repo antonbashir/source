@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,6 +8,7 @@ import 'package:flutter/widgets.dart';
 class TextInputConfiguration implements ThemeComponent<TextInputConfiguration> {
   final EdgeInsetsGeometry helperPadding;
   final TextStyle helperTextStyle;
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double height;
   final double width;
@@ -16,6 +18,7 @@ class TextInputConfiguration implements ThemeComponent<TextInputConfiguration> {
   final TextStyle textStyle;
 
   const TextInputConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.height,
     required this.width,
@@ -31,6 +34,7 @@ class TextInputConfiguration implements ThemeComponent<TextInputConfiguration> {
   TextInputConfiguration copyWith({
     EdgeInsetsGeometry? helperPadding,
     TextStyle? helperTextStyle,
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? height,
     double? width,
@@ -40,6 +44,7 @@ class TextInputConfiguration implements ThemeComponent<TextInputConfiguration> {
     TextStyle? textStyle,
   }) =>
       TextInputConfiguration(
+        borderType: borderType ?? this.borderType,
         helperPadding: helperPadding ?? this.helperPadding,
         helperTextStyle: helperTextStyle ?? this.helperTextStyle,
         borderRadius: borderRadius ?? this.borderRadius,
@@ -55,6 +60,7 @@ class TextInputConfiguration implements ThemeComponent<TextInputConfiguration> {
   TextInputConfiguration lerp(TextInputConfiguration? other, double t) {
     if (other is! TextInputConfiguration) return this;
     return TextInputConfiguration(
+      borderType: other.borderType,
       helperPadding: EdgeInsetsGeometry.lerp(helperPadding, other.helperPadding, t)!,
       helperTextStyle: TextStyle.lerp(helperTextStyle, other.helperTextStyle, t)!,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,

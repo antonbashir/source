@@ -1,11 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class DropdownConfiguration implements ThemeComponent<DropdownConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double distanceToTarget;
   final EdgeInsetsGeometry contentPadding;
@@ -13,6 +14,7 @@ class DropdownConfiguration implements ThemeComponent<DropdownConfiguration> {
   final TextStyle textStyle;
 
   const DropdownConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.distanceToTarget,
     required this.contentPadding,
@@ -22,6 +24,7 @@ class DropdownConfiguration implements ThemeComponent<DropdownConfiguration> {
 
   @override
   DropdownConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? distanceToTarget,
     EdgeInsetsGeometry? contentPadding,
@@ -29,6 +32,7 @@ class DropdownConfiguration implements ThemeComponent<DropdownConfiguration> {
     TextStyle? textStyle,
   }) =>
       DropdownConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         distanceToTarget: distanceToTarget ?? this.distanceToTarget,
         contentPadding: contentPadding ?? this.contentPadding,
@@ -40,6 +44,7 @@ class DropdownConfiguration implements ThemeComponent<DropdownConfiguration> {
   DropdownConfiguration lerp(ThemeComponent<DropdownConfiguration>? other, double t) {
     if (other is! DropdownConfiguration) return this;
     return DropdownConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       distanceToTarget: lerpDouble(distanceToTarget, other.distanceToTarget, t)!,
       contentPadding: EdgeInsetsGeometry.lerp(contentPadding, other.contentPadding, t)!,

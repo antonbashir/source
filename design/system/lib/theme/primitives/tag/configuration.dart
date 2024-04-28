@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class TagConfiguration implements ThemeComponent<TagConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double gap;
   final double height;
@@ -13,6 +15,7 @@ class TagConfiguration implements ThemeComponent<TagConfiguration> {
   final TextStyle textStyle;
 
   const TagConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.gap,
     required this.height,
@@ -23,6 +26,7 @@ class TagConfiguration implements ThemeComponent<TagConfiguration> {
 
   @override
   TagConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -32,6 +36,7 @@ class TagConfiguration implements ThemeComponent<TagConfiguration> {
     TextStyle? upperCaseTextStyle,
   }) =>
       TagConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         gap: gap ?? this.gap,
         height: height ?? this.height,
@@ -44,6 +49,7 @@ class TagConfiguration implements ThemeComponent<TagConfiguration> {
   TagConfiguration lerp(TagConfiguration? other, double t) {
     if (other is! TagConfiguration) return this;
     return TagConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
       height: lerpDouble(height, other.height, t)!,

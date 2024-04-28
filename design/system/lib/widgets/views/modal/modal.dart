@@ -1,5 +1,6 @@
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/assertions.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/widgets/configurator/configurator.dart';
 import 'package:design/widgets/selection/selection.dart';
@@ -98,6 +99,7 @@ class ModalRoute<T> extends RawDialogRoute<T> {
 
 class Modal extends StatelessWidget {
   final Widget child;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Decoration? decoration;
@@ -106,6 +108,7 @@ class Modal extends StatelessWidget {
   const Modal({
     super.key,
     required this.child,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.decoration,
@@ -114,6 +117,7 @@ class Modal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBorderType = borderType ?? context.theme.modalTheme().configuration.borderType;
     final effectiveBorderRadius = borderRadius ?? context.theme.modalTheme().configuration.borderRadius;
     final effectiveBackgroundColor = backgroundColor ?? context.theme.modalTheme().style.backgroundColor;
     final effectiveTextColor = context.theme.modalTheme().style.textColor;
@@ -130,9 +134,10 @@ class Modal extends StatelessWidget {
               decoration: decoration ??
                   ShapeDecoration(
                     color: effectiveBackgroundColor,
-                    shape: SquircleBorder(
-                      borderRadius: effectiveBorderRadius.squircle(context),
-                    ),
+                    shape: switch (effectiveBorderType) {
+                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                      BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                    },
                   ),
               child: Selectable(
                 enabled: Configurator.of(context).actionsConfiguration.enableSelection,

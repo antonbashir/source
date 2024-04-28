@@ -229,14 +229,12 @@ class _DynamicListViewState<T> extends State<DynamicListView<T>> {
                       widget.pageSize,
                       (_) => Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                          padding: EdgeInsets.symmetric(vertical: context.spacings.medium, horizontal: context.spacings.large),
                           child: Container(
                             height: double.infinity,
                             decoration: ShapeDecoration(
                               color: Colors.white,
-                              shape: SquircleBorder(
-                                borderRadius: context.borders.tiny.squircle(context),
-                              ),
+                              shape: SquircleBorder(borderRadius: context.borders.tiny.squircle(context)),
                             ),
                           ),
                         ),

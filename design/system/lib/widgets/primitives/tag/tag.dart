@@ -1,9 +1,12 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/extensions/extensions.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:design/constants/breakpoints.dart';
 
 class Tag extends StatelessWidget {
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final double? height;
@@ -21,6 +24,7 @@ class Tag extends StatelessWidget {
 
   const Tag({
     super.key,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.height,
@@ -40,6 +44,7 @@ class Tag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final effectiveTagConfiguration = context.theme.tagTheme().configuration.select(size);
+    final effectiveBorderType = borderType ?? effectiveTagConfiguration.borderType;
     final effectiveBorderRadius = borderRadius ?? effectiveTagConfiguration.borderRadius;
     final effectiveBackgroundColor = backgroundColor ?? context.theme.tagTheme().style.backgroundColor;
     final effectiveTextColor = context.theme.tagTheme().style.textColor;
@@ -75,9 +80,10 @@ class Tag extends StatelessWidget {
               decoration: decoration ??
                   ShapeDecoration(
                     color: effectiveBackgroundColor,
-                    shape: SquircleBorder(
-                      borderRadius: effectiveBorderRadius.squircle(context),
-                    ),
+                    shape: switch (effectiveBorderType) {
+                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                      BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                    },
                   ),
               child: IconTheme(
                 data: IconThemeData(

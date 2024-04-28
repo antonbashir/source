@@ -2,6 +2,7 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/assertions.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/constants/constants.dart';
 import 'package:design/constants/restoration.dart';
@@ -17,8 +18,10 @@ import 'package:design/widgets/primitives/text/feedback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' as services show TextInputConfiguration;
 import 'package:flutter/services.dart' hide TextInputConfiguration;
+import 'package:flutter/widgets.dart';
 export 'package:flutter/services.dart' show SmartDashesType, SmartQuotesType, TextCapitalization, TextInputAction, TextInputType;
 
 typedef TextInputErrorBuilder = Widget Function(BuildContext context, String? errorText);
@@ -44,6 +47,7 @@ class TextInput extends StatefulWidget {
   final bool scribbleEnabled;
   final bool enableIMEPersonalizedLearning;
   final bool canRequestFocus;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? activeBorderColor;
@@ -138,6 +142,7 @@ class TextInput extends StatefulWidget {
     this.enableIMEPersonalizedLearning = true,
     this.contextMenuBuilder = defaultContextMenuBuilder,
     this.canRequestFocus = true,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.activeBorderColor,
@@ -422,6 +427,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
     final controller = _effectiveController;
     final focusNode = _effectiveFocusNode;
     final effectiveTextInputConfiguration = context.theme.textInputTheme().configuration.select(widget.size);
+    final effectiveBorderType = widget.borderType ?? effectiveTextInputConfiguration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? effectiveTextInputConfiguration.borderRadius;
     final effectiveBackgroundColor = widget.backgroundColor ?? context.theme.textInputTheme().style.backgroundColor;
     final effectiveActiveBorderColor = widget.activeBorderColor ?? context.theme.textInputTheme().style.activeBorderColor;
@@ -442,39 +448,75 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
     final effectiveTextStyle = widget.style ?? effectiveTextInputConfiguration.textStyle;
     final effectiveHelperTextStyle = widget.helperTextStyle ?? effectiveTextInputConfiguration.helperTextStyle;
 
-    final SquircleBorder defaultBorder = SquircleBorder(
-      borderRadius: effectiveBorderRadius.squircle(context),
-      side: BorderSide(
-        color: effectiveInactiveBorderColor,
-        width: context.borders.inactiveWidth,
-      ),
-    );
+    final defaultBorder = switch (effectiveBorderType) {
+      BorderType.rounded => RoundedRectangleBorder(
+          borderRadius: effectiveBorderRadius,
+          side: BorderSide(
+            color: effectiveInactiveBorderColor,
+            width: context.borders.inactiveWidth,
+          ),
+        ),
+      BorderType.squircle => SquircleBorder(
+          borderRadius: effectiveBorderRadius.squircle(context),
+          side: BorderSide(
+            color: effectiveInactiveBorderColor,
+            width: context.borders.inactiveWidth,
+          ),
+        )
+    };
 
-    final SquircleBorder hoverBorder = SquircleBorder(
-      borderRadius: effectiveBorderRadius.squircle(context),
-      side: BorderSide(
-        color: effectiveHoverBorderColor,
-        width: context.borders.activeWidth,
-      ),
-    );
+    final hoverBorder = switch (effectiveBorderType) {
+      BorderType.rounded => RoundedRectangleBorder(
+          borderRadius: effectiveBorderRadius,
+          side: BorderSide(
+            color: effectiveHoverBorderColor,
+            width: context.borders.activeWidth,
+          ),
+        ),
+      BorderType.squircle => SquircleBorder(
+          borderRadius: effectiveBorderRadius.squircle(context),
+          side: BorderSide(
+            color: effectiveHoverBorderColor,
+            width: context.borders.activeWidth,
+          ),
+        )
+    };
 
-    final SquircleBorder focusBorder = SquircleBorder(
-      borderRadius: effectiveBorderRadius.squircle(context),
-      side: BorderSide(
-        color: effectiveActiveBorderColor,
-        width: context.borders.activeWidth,
-      ),
-    );
+    final focusBorder = switch (effectiveBorderType) {
+      BorderType.rounded => RoundedRectangleBorder(
+          borderRadius: effectiveBorderRadius,
+          side: BorderSide(
+            color: effectiveActiveBorderColor,
+            width: context.borders.activeWidth,
+          ),
+        ),
+      BorderType.squircle => SquircleBorder(
+          borderRadius: effectiveBorderRadius.squircle(context),
+          side: BorderSide(
+            color: effectiveActiveBorderColor,
+            width: context.borders.activeWidth,
+          ),
+        ),
+    };
 
-    final SquircleBorder errorBorder = SquircleBorder(
-      borderRadius: effectiveBorderRadius.squircle(context),
-      side: BorderSide(
-        color: widget.errorBorderColor ?? effectiveErrorColor,
-        width: context.borders.activeWidth,
-      ),
-    );
+    final errorBorder = switch (effectiveBorderType) {
+      BorderType.rounded => RoundedRectangleBorder(
+          borderRadius: effectiveBorderRadius,
+          side: BorderSide(
+            color: widget.errorBorderColor ?? effectiveErrorColor,
+            width: context.borders.activeWidth,
+          ),
+        ),
+      BorderType.squircle => SquircleBorder(
+          borderRadius: effectiveBorderRadius.squircle(context),
+          side: BorderSide(
+            color: widget.errorBorderColor ?? effectiveErrorColor,
+            width: context.borders.activeWidth,
+          ),
+        ),
+    };
 
-    final SquircleBorder resolvedBorder = _hasError
+    final resolvedBorder = _hasError
         ? errorBorder
         : _hasFocus
             ? focusBorder

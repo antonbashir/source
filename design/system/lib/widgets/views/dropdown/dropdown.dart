@@ -1,9 +1,11 @@
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/assertions.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/delays.dart';
 import 'package:design/constants/dropdown.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/theme/tokens/colors.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class Dropdown extends StatefulWidget {
@@ -15,6 +17,7 @@ class Dropdown extends StatefulWidget {
   final DropdownAnchorPosition anchorPosition;
   final Alignment? followerAnchor;
   final Alignment? targetAnchor;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Decoration? decoration;
@@ -46,6 +49,7 @@ class Dropdown extends StatefulWidget {
     required this.content,
     this.followerAnchor,
     this.targetAnchor,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.decoration,
@@ -259,6 +263,7 @@ class _DropdownState extends State<Dropdown> with RouteAware, SingleTickerProvid
   }
 
   Widget _createOverlayContent() {
+    final effectiveBorderType = widget.borderType ?? context.theme.dropdownTheme().configuration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? context.theme.dropdownTheme().configuration.borderRadius;
     final effectiveBackgroundColor = widget.backgroundColor ?? context.theme.dropdownTheme().style.backgroundColor;
     final effectiveTextColor = context.theme.dropdownTheme().style.textColor;
@@ -350,10 +355,16 @@ class _DropdownState extends State<Dropdown> with RouteAware, SingleTickerProvid
                           ShapeDecoration(
                             color: effectiveBackgroundColor,
                             shadows: effectiveDropdownShadows,
-                            shape: SquircleBorder(
-                              borderRadius: effectiveBorderRadius.squircle(context),
-                              side: BorderSide(color: widget.borderColor),
-                            ),
+                            shape: switch (effectiveBorderType) {
+                              BorderType.rounded => RoundedRectangleBorder(
+                                  borderRadius: effectiveBorderRadius,
+                                  side: BorderSide(color: widget.borderColor),
+                                ),
+                              BorderType.squircle => SquircleBorder(
+                                  borderRadius: effectiveBorderRadius.squircle(context),
+                                  side: BorderSide(color: widget.borderColor),
+                                )
+                            },
                           ),
                       child: Directionality(
                         textDirection: Directionality.of(context),

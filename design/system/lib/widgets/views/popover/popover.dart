@@ -1,5 +1,6 @@
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/assertions.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/delays.dart';
 import 'package:design/constants/popover.dart';
 import 'package:design/extensions/extensions.dart';
@@ -15,6 +16,7 @@ class Popover extends StatefulWidget {
   final PopoverPosition position;
   final bool show;
   final double? margin;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? borderColor;
@@ -41,6 +43,7 @@ class Popover extends StatefulWidget {
     required this.show,
     this.position = PopoverPosition.top,
     this.margin,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.borderColor,
@@ -93,6 +96,7 @@ class Popover extends StatefulWidget {
     bool trackContent = false,
     PopoverPosition position = PopoverPosition.top,
     double? margin,
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     Color? backgroundColor,
     Color? borderColor,
@@ -116,6 +120,7 @@ class Popover extends StatefulWidget {
           popover: (show, showPopover, hidePopover) => Popover(
                 show: show,
                 margin: margin,
+                borderType: borderType,
                 borderRadius: borderRadius,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,
@@ -333,6 +338,7 @@ class _PopoverState extends State<Popover> with RouteAware, SingleTickerProvider
   Widget _createOverlayContent() {
     PopoverPosition popoverPosition = widget.position;
 
+    final effectiveBorderType = widget.borderType ?? context.theme.popoverTheme().configuration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? context.theme.popoverTheme().configuration.borderRadius;
     final effectiveBackgroundColor = widget.backgroundColor ?? context.theme.popoverTheme().style.backgroundColor;
     final effectiveTextColor = context.theme.popoverTheme().style.textColor;
@@ -416,10 +422,16 @@ class _PopoverState extends State<Popover> with RouteAware, SingleTickerProvider
                           ShapeDecoration(
                             color: effectiveBackgroundColor,
                             shadows: effectivePopoverShadows,
-                            shape: SquircleBorder(
-                              borderRadius: effectiveBorderRadius.squircle(context),
-                              side: BorderSide(color: widget.borderColor ?? context.theme.popoverTheme().style.borderColor),
-                            ),
+                            shape: switch (effectiveBorderType) {
+                              BorderType.rounded => RoundedRectangleBorder(
+                                  borderRadius: effectiveBorderRadius,
+                                  side: BorderSide(color: widget.borderColor ?? context.theme.popoverTheme().style.borderColor),
+                                ),
+                              BorderType.squircle => SquircleBorder(
+                                  borderRadius: effectiveBorderRadius.squircle(context),
+                                  side: BorderSide(color: widget.borderColor ?? context.theme.popoverTheme().style.borderColor),
+                                ),
+                            },
                           ),
                       child: Directionality(
                         textDirection: Directionality.of(context),
