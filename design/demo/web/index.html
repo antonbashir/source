@@ -14,26 +14,12 @@
 
   <title></title>
   <link rel="manifest" href="manifest.json">
-
-  <script>
-    const serviceWorkerVersion =     
-  </script>
-  <script src="flutter.js" defer></script>
+  <script src="flutter.js"></script>
 </head>
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
-      _flutter.loader.load({
-        serviceWorker: {
-          serviceWorkerVersion: {{flutter_service_worker_version}},
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
+    {{flutter_build_config}}
+    _flutter.loader.load();
   </script>
 </body>
 </html>
