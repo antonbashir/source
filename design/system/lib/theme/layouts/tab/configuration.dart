@@ -1,11 +1,13 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class TabBarConfiguration implements ThemeComponent<TabBarConfiguration> {
   final double gap;
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double height;
   final double iconSizeValue;
@@ -17,6 +19,7 @@ class TabBarConfiguration implements ThemeComponent<TabBarConfiguration> {
 
   const TabBarConfiguration({
     required this.gap,
+    required this.borderType,
     required this.borderRadius,
     required this.height,
     required this.iconSizeValue,
@@ -30,6 +33,7 @@ class TabBarConfiguration implements ThemeComponent<TabBarConfiguration> {
   @override
   TabBarConfiguration copyWith({
     double? gap,
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? height,
     double? iconSizeValue,
@@ -41,6 +45,7 @@ class TabBarConfiguration implements ThemeComponent<TabBarConfiguration> {
   }) =>
       TabBarConfiguration(
         gap: gap ?? this.gap,
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         height: height ?? this.height,
         iconSizeValue: iconSizeValue ?? this.iconSizeValue,
@@ -55,6 +60,7 @@ class TabBarConfiguration implements ThemeComponent<TabBarConfiguration> {
   TabBarConfiguration lerp(ThemeComponent<TabBarConfiguration>? other, double t) {
     if (other is! TabBarConfiguration) return this;
     return TabBarConfiguration(
+      borderType: other.borderType,
       gap: lerpDouble(gap, other.gap, t)!,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       height: lerpDouble(height, other.height, t)!,

@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/theme/tokens/colors.dart';
 import 'package:flutter/widgets.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/widgets.dart';
 class Alert extends StatefulWidget {
   final bool show;
   final bool showBorder;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? borderColor;
@@ -31,6 +33,7 @@ class Alert extends StatefulWidget {
     required this.label,
     this.show = false,
     this.showBorder = false,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.borderColor,
@@ -56,6 +59,7 @@ class Alert extends StatefulWidget {
     required this.backgroundColor,
     required this.label,
     this.show = false,
+    this.borderType,
     this.borderRadius,
     this.color,
     this.semanticLabel,
@@ -80,6 +84,7 @@ class Alert extends StatefulWidget {
     required this.borderColor,
     required this.label,
     this.show = false,
+    this.borderType,
     this.borderRadius,
     this.borderWidth,
     this.color,
@@ -153,6 +158,7 @@ class _AlertState extends State<Alert> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBorderType = widget.borderType ?? context.theme.alertTheme().configuration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? context.theme.alertTheme().configuration.borderRadius;
     final effectiveBorderWidth = widget.borderWidth ?? context.tokens.borders.borderWidth;
     final effectiveHorizontalGap = widget.horizontalGap ?? context.theme.alertTheme().configuration.horizontalGap;
@@ -194,14 +200,24 @@ class _AlertState extends State<Alert> with SingleTickerProviderStateMixin {
                 decoration: widget.decoration ??
                     ShapeDecoration(
                       color: effectiveBackgroundColor,
-                      shape: SquircleBorder(
-                        side: BorderSide(
-                          color: effectiveBorderColor,
-                          width: widget.showBorder ? effectiveBorderWidth : 0,
-                          style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
-                        ),
-                        borderRadius: effectiveBorderRadius.squircle(context),
-                      ),
+                      shape: switch (effectiveBorderType) {
+                        BorderType.squircle => SquircleBorder(
+                            side: BorderSide(
+                              color: effectiveBorderColor,
+                              width: widget.showBorder ? effectiveBorderWidth : 0,
+                              style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
+                            ),
+                            borderRadius: effectiveBorderRadius.squircle(context),
+                          ),
+                        BorderType.rounded => RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: effectiveBorderColor,
+                              width: widget.showBorder ? effectiveBorderWidth : 0,
+                              style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
+                            ),
+                            borderRadius: effectiveBorderRadius,
+                          )
+                      },
                     ),
                 child: IconTheme(
                   data: IconThemeData(

@@ -1,3 +1,4 @@
+import 'package:design/constants/borders.dart';
 import 'package:flutter/widgets.dart';
 
 class Tab {
@@ -52,6 +53,7 @@ class PillTab {
   final bool isFocusable;
   final bool showFocusEffect;
   final FocusNode? focusNode;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? focusEffectColor;
   final Color? selectedTabColor;
@@ -75,6 +77,7 @@ class PillTab {
     this.showFocusEffect = true,
     this.focusNode,
     this.minTouchTargetSize,
+    this.borderType,
     this.borderRadius,
     this.focusEffectColor,
     this.selectedTabColor,
@@ -98,6 +101,7 @@ class SidebarTab {
   final bool isFocusable;
   final bool showFocusEffect;
   final FocusNode? focusNode;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? focusEffectColor;
   final Color? selectedTabColor;
@@ -121,6 +125,7 @@ class SidebarTab {
     this.showFocusEffect = true,
     this.focusNode,
     this.minTouchTargetSize,
+    this.borderType,
     this.borderRadius,
     this.focusEffectColor,
     this.selectedTabColor,

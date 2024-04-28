@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class AlertConfiguration implements ThemeComponent<AlertConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double horizontalGap;
   final double minimumHeight;
@@ -14,6 +16,7 @@ class AlertConfiguration implements ThemeComponent<AlertConfiguration> {
   final TextStyle labelTextStyle;
 
   const AlertConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.horizontalGap,
     required this.minimumHeight,
@@ -25,6 +28,7 @@ class AlertConfiguration implements ThemeComponent<AlertConfiguration> {
 
   @override
   AlertConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? horizontalGap,
     double? minimumHeight,
@@ -34,6 +38,7 @@ class AlertConfiguration implements ThemeComponent<AlertConfiguration> {
     TextStyle? labelTextStyle,
   }) =>
       AlertConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         horizontalGap: horizontalGap ?? this.horizontalGap,
         minimumHeight: minimumHeight ?? this.minimumHeight,
@@ -47,6 +52,7 @@ class AlertConfiguration implements ThemeComponent<AlertConfiguration> {
   AlertConfiguration lerp(ThemeComponent<AlertConfiguration>? other, double t) {
     if (other is! AlertConfiguration) return this;
     return AlertConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       horizontalGap: lerpDouble(horizontalGap, other.horizontalGap, t)!,
       minimumHeight: lerpDouble(minimumHeight, other.minimumHeight, t)!,

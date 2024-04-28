@@ -1,5 +1,6 @@
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/avatar.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/widgets/primitives/avatar/clipper.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/widgets.dart';
 class Avatar extends StatelessWidget {
   final bool showBadge;
   final AvatarBadgeAlignment badgeAlignment;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? textColor;
@@ -27,6 +29,7 @@ class Avatar extends StatelessWidget {
     super.key,
     this.showBadge = false,
     this.badgeAlignment = AvatarBadgeAlignment.bottomRight,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.textColor,
@@ -76,17 +79,17 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveAvatarSize = context.theme.avatarTheme().sizes.select(size);
-    final effectiveBorderRadius = borderRadius ?? effectiveAvatarSize.borderRadius;
-    final resolvedBorderRadius = effectiveBorderRadius.resolve(Directionality.of(context));
+    final effectiveConfiguration = context.theme.avatarTheme().sizes.select(size);
+    final effectiveBorderType = borderType ?? effectiveConfiguration.borderType;
+    final effectiveBorderRadius = borderRadius ?? effectiveConfiguration.borderRadius;
     final effectiveBackgroundColor = backgroundColor ?? context.theme.avatarTheme().style.backgroundColor;
     final effectiveBadgeColor = badgeColor ?? context.theme.avatarTheme().style.badgeColor;
     final effectiveTextColor = textColor ?? context.theme.avatarTheme().style.textColor;
     final effectiveIconColor = iconColor ?? context.theme.avatarTheme().style.iconColor;
-    final effectiveAvatarHeight = height ?? effectiveAvatarSize.avatarSizeValue;
-    final effectiveAvatarWidth = width ?? effectiveAvatarSize.avatarSizeValue;
-    final effectiveBadgeMarginValue = badgeMarginValue ?? effectiveAvatarSize.badgeMarginValue;
-    final effectiveBadgeSize = badgeSize ?? effectiveAvatarSize.badgeSizeValue;
+    final effectiveAvatarHeight = height ?? effectiveConfiguration.avatarSizeValue;
+    final effectiveAvatarWidth = width ?? effectiveConfiguration.avatarSizeValue;
+    final effectiveBadgeMarginValue = badgeMarginValue ?? effectiveConfiguration.badgeMarginValue;
+    final effectiveBadgeSize = badgeSize ?? effectiveConfiguration.badgeSizeValue;
 
     return Semantics(
       label: semanticLabel,
@@ -106,14 +109,14 @@ class Avatar extends StatelessWidget {
                         showBadge: showBadge,
                         width: effectiveAvatarWidth,
                         height: effectiveAvatarHeight,
-                        borderRadius: resolvedBorderRadius,
+                        borderRadius: effectiveBorderRadius.resolve(Directionality.of(context)),
                         badgeSize: effectiveBadgeSize,
                         badgeMarginValue: effectiveBadgeMarginValue,
                         badgeAlignment: badgeAlignment,
                         textDirection: Directionality.of(context),
                       ),
                 child: DefaultTextStyle(
-                  style: effectiveAvatarSize.textStyle.copyWith(color: effectiveTextColor),
+                  style: effectiveConfiguration.textStyle.copyWith(color: effectiveTextColor),
                   child: IconTheme(
                     data: IconThemeData(
                       color: effectiveIconColor,
@@ -127,9 +130,10 @@ class Avatar extends StatelessWidget {
                                 fit: BoxFit.cover,
                               )
                             : null,
-                        shape: SquircleBorder(
-                          borderRadius: resolvedBorderRadius.squircle(context),
-                        ),
+                        shape: switch (effectiveBorderType) {
+                          BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius.resolve(Directionality.of(context))),
+                          BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                        },
                       ),
                       child: Center(child: content),
                     ),

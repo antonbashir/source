@@ -9,6 +9,7 @@ import 'package:design/theme/tokens/colors.dart';
 import 'package:design/widgets/layouts/sidebar/drawer.dart';
 import 'package:design/widgets/layouts/tabs/views/bar.dart';
 import 'package:design/widgets/primitives/control/control.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class Sidebar extends StatefulWidget {
@@ -163,6 +164,7 @@ class _SidebarTabBuilderState extends State<_SidebarTabBuilder> with SingleTicke
   @override
   Widget build(BuildContext context) {
     final tab = widget.tab;
+    final effectiveTabBorderType = tab.borderType ?? widget.barConfiguration.borderType;
     final effectiveTabBorderRadius = tab.borderRadius ?? widget.barConfiguration.borderRadius;
     final effectiveSelectedTabColor = tab.selectedTabColor ?? widget.barStyle.selectedTabColor;
     final effectiveTextColor = tab.textStyle?.color ?? tab.textColor ?? widget.barStyle.tabTextColor;
@@ -209,9 +211,10 @@ class _SidebarTabBuilderState extends State<_SidebarTabBuilder> with SingleTicke
             decoration: tab.decoration ??
                 ShapeDecoration(
                   color: _tabColor!.value,
-                  shape: SquircleBorder(
-                    borderRadius: effectiveTabBorderRadius.squircle(context),
-                  ),
+                  shape: switch (effectiveTabBorderType) {
+                    BorderType.squircle => SquircleBorder(borderRadius: effectiveTabBorderRadius.squircle(context)),
+                    BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveTabBorderRadius.squircle(context)),
+                  },
                 ),
             child: IconTheme(
               data: IconThemeData(

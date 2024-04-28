@@ -1,8 +1,10 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/constants/buttons.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/widgets/primitives/control/control.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class Button extends StatefulWidget {
@@ -15,6 +17,7 @@ class Button extends StatefulWidget {
   final bool showPulseEffectJiggle;
   final bool showScaleEffect;
   final ButtonVariant variant;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? borderColor;
@@ -62,6 +65,7 @@ class Button extends StatefulWidget {
     this.showPulseEffectJiggle = true,
     this.showScaleEffect = false,
     this.variant = ButtonVariant.base,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.borderColor,
@@ -110,6 +114,7 @@ class Button extends StatefulWidget {
     this.showPulseEffectJiggle = true,
     this.showScaleEffect = true,
     this.variant = ButtonVariant.icon,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.borderColor,
@@ -176,6 +181,7 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final effectiveButtonConfiguration = context.theme.buttonTheme().configuration.select(widget.size);
+    final effectiveBorderType = widget.borderType ?? effectiveButtonConfiguration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? effectiveButtonConfiguration.borderRadius;
     final effectiveBackgroundColor = widget.backgroundColor ?? context.theme.buttonTheme().style.selectColors(widget.variant).background;
     final effectiveBorderColor = widget.borderColor ?? context.theme.buttonTheme().style.selectColors(widget.variant).border;
@@ -259,14 +265,24 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
                 decoration: widget.decoration ??
                     ShapeDecoration(
                       color: _backgroundColor!.value,
-                      shape: SquircleBorder(
-                        borderRadius: effectiveBorderRadius.squircle(context),
-                        side: BorderSide(
-                          color: effectiveBorderColor,
-                          width: widget.showBorder ? effectiveBorderWidth : 0,
-                          style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
-                        ),
-                      ),
+                      shape: switch (effectiveBorderType) {
+                        BorderType.rounded => RoundedRectangleBorder(
+                            borderRadius: effectiveBorderRadius,
+                            side: BorderSide(
+                              color: effectiveBorderColor,
+                              width: widget.showBorder ? effectiveBorderWidth : 0,
+                              style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
+                            ),
+                          ),
+                        BorderType.squircle => SquircleBorder(
+                            borderRadius: effectiveBorderRadius.squircle(context),
+                            side: BorderSide(
+                              color: effectiveBorderColor,
+                              width: widget.showBorder ? effectiveBorderWidth : 0,
+                              style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
+                            ),
+                          ),
+                      },
                     ),
                 child: child,
               ),

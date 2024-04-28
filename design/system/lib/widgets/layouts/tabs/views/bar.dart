@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/constants/tabs.dart';
 import 'package:design/extensions/extensions.dart';
@@ -7,6 +8,7 @@ import 'package:design/widgets/layouts/tabs/controller/controller.dart';
 import 'package:design/widgets/layouts/tabs/views/segmented.dart';
 import 'package:design/model/tabs.dart';
 import 'package:design/widgets/primitives/control/control.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 typedef CustomTabBuilder = Widget Function(BuildContext context, bool isSelected);
@@ -424,6 +426,7 @@ class _PillTabBuilderState extends State<_PillTabBuilder> with SingleTickerProvi
   @override
   Widget build(BuildContext context) {
     final tab = widget.tab;
+    final effectiveTabBorderType = tab.borderType ?? widget.barConfiguration.borderType;
     final effectiveTabBorderRadius = tab.borderRadius ?? widget.barConfiguration.borderRadius;
     final effectiveSelectedTabColor = tab.selectedTabColor ?? context.theme.tabBarTheme().style.selectedPillTabColor;
     final effectiveTextColor = tab.textStyle?.color ?? tab.textColor ?? context.theme.tabBarTheme().style.segmentTextColor;
@@ -469,9 +472,10 @@ class _PillTabBuilderState extends State<_PillTabBuilder> with SingleTickerProvi
             decoration: tab.decoration ??
                 ShapeDecoration(
                   color: _tabColor!.value,
-                  shape: SquircleBorder(
-                    borderRadius: effectiveTabBorderRadius.squircle(context),
-                  ),
+                  shape: switch (effectiveTabBorderType) {
+                    BorderType.squircle => SquircleBorder(borderRadius: effectiveTabBorderRadius.squircle(context)),
+                    BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveTabBorderRadius),
+                  },
                 ),
             child: IconTheme(
               data: IconThemeData(

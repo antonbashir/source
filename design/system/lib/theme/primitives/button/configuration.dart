@@ -1,11 +1,13 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class ButtonConfiguration implements ThemeComponent<ButtonConfiguration> {
   final double borderWidth;
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double gap;
   final double height;
@@ -16,6 +18,7 @@ class ButtonConfiguration implements ThemeComponent<ButtonConfiguration> {
 
   const ButtonConfiguration({
     required this.borderWidth,
+    required this.borderType,
     required this.borderRadius,
     required this.gap,
     required this.height,
@@ -28,6 +31,7 @@ class ButtonConfiguration implements ThemeComponent<ButtonConfiguration> {
   @override
   ButtonConfiguration copyWith({
     double? borderWidth,
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -38,6 +42,7 @@ class ButtonConfiguration implements ThemeComponent<ButtonConfiguration> {
   }) =>
       ButtonConfiguration(
         borderWidth: borderWidth ?? this.borderWidth,
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         gap: gap ?? this.gap,
         height: height ?? this.height,
@@ -51,6 +56,7 @@ class ButtonConfiguration implements ThemeComponent<ButtonConfiguration> {
   ButtonConfiguration lerp(ButtonConfiguration? other, double t) {
     if (other is! ButtonConfiguration) return this;
     return ButtonConfiguration(
+      borderType: other.borderType,
       borderWidth: lerpDouble(borderWidth, other.borderWidth, t)!,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
