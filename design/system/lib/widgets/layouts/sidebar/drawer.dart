@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:flutter/widgets.dart';
 
@@ -6,6 +7,7 @@ class Drawer extends StatelessWidget {
   final Widget content;
   final Widget child;
   final bool show;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? barrierColor;
@@ -19,6 +21,7 @@ class Drawer extends StatelessWidget {
     this.show = true,
     required this.content,
     required this.child,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.barrierColor,
@@ -30,6 +33,7 @@ class Drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBorderType = borderType ?? context.theme.drawerTheme().configuration.borderType;
     final effectiveBorderRadius = borderRadius ?? context.theme.drawerTheme().configuration.borderRadius;
     final effectiveBackgroundColor = backgroundColor ?? context.theme.drawerTheme().style.backgroundColor;
     final effectiveTextColor = context.theme.drawerTheme().style.textColor;
@@ -60,9 +64,10 @@ class Drawer extends StatelessWidget {
                           ShapeDecoration(
                             color: effectiveBackgroundColor,
                             shadows: effectiveDrawerShadows,
-                            shape: SquircleBorder(
-                              borderRadius: effectiveBorderRadius.squircle(context),
-                            ),
+                            shape: switch (effectiveBorderType) {
+                              BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                              BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                            },
                           ),
                       child: child,
                     ),

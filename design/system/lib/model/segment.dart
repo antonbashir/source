@@ -1,3 +1,4 @@
+import 'package:design/constants/borders.dart';
 import 'package:flutter/widgets.dart';
 
 class Segment {
@@ -17,6 +18,7 @@ class Segment {
   final Widget? label;
   final Widget? trailing;
   final BorderRadiusGeometry? borderRadius;
+  final BorderType? borderType;
   final double? gap;
   final EdgeInsetsGeometry? padding;
   final double? height;
@@ -29,6 +31,7 @@ class Segment {
     this.isFocusable = true,
     this.showFocusEffect = true,
     this.borderRadius,
+    this.borderType,
     this.gap,
     this.padding,
     this.height,

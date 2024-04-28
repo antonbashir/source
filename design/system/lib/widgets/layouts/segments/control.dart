@@ -143,11 +143,12 @@ class _SegmentedControlState extends State<SegmentedControl> {
         constraints: BoxConstraints(minWidth: effectiveHeight),
         decoration: widget.decoration ??
             ShapeDecoration(
-                color: effectiveBackgroundColor,
-                shape: switch (effectiveBorderType) {
-                  BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
-                  BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
-                }),
+              color: effectiveBackgroundColor,
+              shape: switch (effectiveBorderType) {
+                BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+              },
+            ),
         child: BaseSegmentedTabBar(
           gap: effectiveGap,
           animationDuration: widget.animationDuration ?? context.theme.tabBarTheme().style.animationDuration,
@@ -242,6 +243,7 @@ class _SegmentBuilderState extends State<_SegmentBuilder> with SingleTickerProvi
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBorderType = widget.segment.borderType ?? widget.controlConfiguration.segmentBorderType;
     final effectiveBorderRadius = widget.segment.borderRadius ?? widget.controlConfiguration.segmentBorderRadius;
     final effectiveSelectedColor = widget.segment.selectedColor ?? context.theme.segmentedControlTheme().style.selectedSegmentColor;
     final effectiveTextColor = widget.segment.textColor ?? context.theme.segmentedControlTheme().style.segmentTextColor;
@@ -289,9 +291,10 @@ class _SegmentBuilderState extends State<_SegmentBuilder> with SingleTickerProvi
               decoration: effectiveDecoration ??
                   ShapeDecoration(
                     color: _segmentColor!.value,
-                    shape: SquircleBorder(
-                      borderRadius: effectiveBorderRadius.squircle(context),
-                    ),
+                    shape: switch (effectiveBorderType) {
+                      BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                    },
                   ),
               child: IconTheme(
                 data: IconThemeData(

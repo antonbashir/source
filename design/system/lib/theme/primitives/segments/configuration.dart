@@ -14,6 +14,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
   final double iconSizeValue;
   final TextStyle segmentTextStyle;
   final BorderRadiusGeometry segmentBorderRadius;
+  final BorderType segmentBorderType;
   final double segmentGap;
   final EdgeInsetsGeometry segmentPadding;
   final double minTouchTargetSize;
@@ -21,6 +22,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
   const SegmentedControlConfiguration({
     required this.borderType,
     required this.segmentBorderRadius,
+    required this.segmentBorderType,
     required this.segmentGap,
     required this.height,
     required this.iconSizeValue,
@@ -35,6 +37,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
   @override
   SegmentedControlConfiguration copyWith({
     BorderType? borderType,
+    BorderType? segmentBorderType,
     BorderRadiusGeometry? borderRadius,
     double? gap,
     EdgeInsetsGeometry? padding,
@@ -48,6 +51,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
   }) =>
       SegmentedControlConfiguration(
         borderType: borderType ?? this.borderType,
+        segmentBorderType: segmentBorderType ?? this.segmentBorderType,
         borderRadius: borderRadius ?? this.borderRadius,
         gap: gap ?? this.gap,
         padding: padding ?? this.padding,
@@ -65,6 +69,7 @@ class SegmentedControlConfiguration implements ThemeComponent<SegmentedControlCo
     if (other is! SegmentedControlConfiguration) return this;
     return SegmentedControlConfiguration(
       borderType: other.borderType,
+      segmentBorderType: other.segmentBorderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,
       padding: EdgeInsetsGeometry.lerp(padding, other.padding, t)!,
