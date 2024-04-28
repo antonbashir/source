@@ -6,4 +6,5 @@ final _popoverConfiguration = PopoverConfiguration(
   contentPadding: const EdgeInsets.all(12),
   textStyle: _typography.base.bodyMedium,
   margin: 8,
+  borderType: _borders.type,
 );

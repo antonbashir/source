@@ -6,4 +6,5 @@ final _dropdownConfiguration = DropdownConfiguration(
   contentPadding: const EdgeInsets.all(4),
   dropdownMargin: const EdgeInsets.all(8),
   textStyle: _typography.base.bodyMedium,
+  borderType: _borders.type,
 );

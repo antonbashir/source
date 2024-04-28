@@ -2,6 +2,7 @@ part of '../defaults.dart';
 
 final _tagConfiguration = Breakpoints(
   TagConfiguration(
+    borderType: _borders.type,
     borderRadius: _borders.large,
     gap: 4,
     height: 40,
@@ -11,6 +12,7 @@ final _tagConfiguration = Breakpoints(
   ),
   {
     BreakpointSize.tiny: TagConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.large,
       gap: 2,
       height: 24,
@@ -19,6 +21,7 @@ final _tagConfiguration = Breakpoints(
       textStyle: _typography.base.labelSmall,
     ),
     BreakpointSize.small: TagConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.large,
       gap: 4,
       height: 32,
@@ -27,6 +30,7 @@ final _tagConfiguration = Breakpoints(
       textStyle: _typography.base.labelSmall,
     ),
     BreakpointSize.medium: TagConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.large,
       gap: 4,
       height: 40,

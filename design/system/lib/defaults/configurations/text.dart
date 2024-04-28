@@ -10,6 +10,7 @@ final _textAreaConfiguration = TextAreaConfiguration(
 
 final _textInputConfiguration = Breakpoints(
   TextInputConfiguration(
+    borderType: _borders.type,
     borderRadius: _borders.small,
     height: 40,
     width: 150,
@@ -25,6 +26,7 @@ final _textInputConfiguration = Breakpoints(
   ),
   {
     BreakpointSize.small: TextInputConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.small,
       height: 32,
       width: 100,
@@ -39,6 +41,7 @@ final _textInputConfiguration = Breakpoints(
       helperTextStyle: _typography.base.bodySmall,
     ),
     BreakpointSize.medium: TextInputConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.small,
       height: 40,
       width: 150,
@@ -53,6 +56,7 @@ final _textInputConfiguration = Breakpoints(
       helperTextStyle: _typography.base.bodySmall,
     ),
     BreakpointSize.large: TextInputConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.small,
       height: 48,
       width: 200,
@@ -67,6 +71,7 @@ final _textInputConfiguration = Breakpoints(
       helperTextStyle: _typography.base.bodySmall,
     ),
     BreakpointSize.gigantic: TextInputConfiguration(
+      borderType: _borders.type,
       borderRadius: _borders.small,
       height: 56,
       width: 350,
