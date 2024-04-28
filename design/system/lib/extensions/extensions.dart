@@ -142,7 +142,6 @@ extension BuildContextExtensions on BuildContext {
 extension BorderRadiusGeometryExtensions on BorderRadiusGeometry {
   SquircleBorderRadius squircle(BuildContext context) {
     final borderRadius = resolve(Directionality.of(context));
-
     return SquircleBorderRadius.only(
       topLeft: SquircleRadius(cornerRadius: borderRadius.topLeft.x),
       topRight: SquircleRadius(cornerRadius: borderRadius.topRight.x),
