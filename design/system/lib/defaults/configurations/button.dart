@@ -48,7 +48,7 @@ final _buttonConfiguration = Breakpoints(
     ),
     BreakpointSize.large: ButtonConfiguration(
       borderWidth: _borders.inactiveWidth,
-      borderRadius: _borders.small,
+      borderRadius: _borders.medium,
       gap: 12,
       height: 48,
       iconSizeValue: 24,
@@ -59,7 +59,7 @@ final _buttonConfiguration = Breakpoints(
     ),
     BreakpointSize.gigantic: ButtonConfiguration(
       borderWidth: _borders.inactiveWidth,
-      borderRadius: _borders.small,
+      borderRadius: _borders.medium,
       gap: 16,
       height: 56,
       iconSizeValue: 24,
