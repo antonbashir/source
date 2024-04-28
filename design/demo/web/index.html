@@ -16,16 +16,16 @@
   <link rel="manifest" href="manifest.json">
 
   <script>
-    const serviceWorkerVersion = null;
+    const serviceWorkerVersion =     
   </script>
   <script src="flutter.js" defer></script>
 </head>
 <body>
   <script>
     window.addEventListener('load', function(ev) {
-      _flutter.loader.loadEntrypoint({
+      _flutter.loader.load({
         serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
+          serviceWorkerVersion: {{flutter_build_config}},
         },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
