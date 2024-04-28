@@ -28,7 +28,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build
-        run: cd design/demo && flutter pub get && flutter build web --wasm --base-href "/source/"
+        run: cd design/demo && flutter pub get && rm web/index.html && cp web/index.wasm.html web/index.html && flutter build web --wasm --base-href "/source/"
       - name: Upload
         uses: actions/upload-pages-artifact@v2
         with:
