@@ -12,10 +12,12 @@ class CircularProgress extends StatelessWidget {
   final BreakpointSize? size;
   final String? semanticLabel;
   final StrokeCap? strokeCap;
+  final bool active;
 
   const CircularProgress({
     super.key,
     required this.value,
+    this.active = true,
     this.color,
     this.backgroundColor,
     this.sizeValue,
@@ -41,6 +43,7 @@ class CircularProgress extends StatelessWidget {
         height: effectiveSize,
         width: effectiveSize,
         child: CircularProgressIndicator(
+          active: active,
           color: effectiveColor,
           backgroundColor: effectiveBackgroundColor,
           strokeWidth: effectiveStrokeWidth,

@@ -8,6 +8,8 @@ class _Indicators extends StatefulWidget {
 }
 
 class _IndicatorsState extends State<_Indicators> {
+  var _active = false;
+
   @override
   Widget build(BuildContext context) => DecoratedBox(
         decoration: ShapeDecoration(shape: SquircleBorder(borderRadius: context.borders.medium.squircle(context), side: BorderSide(color: context.colors.border))),
@@ -16,9 +18,26 @@ class _IndicatorsState extends State<_Indicators> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.all(context.spacings.small),
-                child: Text("Indicators", style: context.typography.base.titleLarge),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(context.spacings.small),
+                    child: Text("Indicators", style: context.typography.base.titleLarge),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(context.spacings.small),
+                        child: Text("Active", style: context.typography.base.bodyMedium),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(context.spacings.small),
+                        child: Checkbox(value: _active, onChanged: (value) => setState(() => _active = value!)),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               SizedBox(height: context.spacings.medium),
               const Row(
@@ -30,15 +49,15 @@ class _IndicatorsState extends State<_Indicators> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   SizedBox(width: context.spacings.tiny),
-                  const CircularLoader(size: BreakpointSize.tiny),
+                  CircularLoader(size: BreakpointSize.tiny, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const CircularLoader(size: BreakpointSize.small),
+                  CircularLoader(size: BreakpointSize.small, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const CircularLoader(size: BreakpointSize.medium),
+                  CircularLoader(size: BreakpointSize.medium, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const CircularLoader(size: BreakpointSize.large),
+                  CircularLoader(size: BreakpointSize.large, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const CircularLoader(size: BreakpointSize.gigantic),
+                  CircularLoader(size: BreakpointSize.gigantic, active: _active),
                 ],
               ),
               SizedBox(height: context.spacings.medium),
@@ -94,15 +113,15 @@ class _IndicatorsState extends State<_Indicators> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   SizedBox(width: context.spacings.tiny),
-                  const LinearLoader(width: 150, size: BreakpointSize.tiny),
+                  LinearLoader(width: 150, size: BreakpointSize.tiny, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const LinearLoader(width: 150, size: BreakpointSize.small),
+                  LinearLoader(width: 150, size: BreakpointSize.small, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const LinearLoader(width: 150, size: BreakpointSize.medium),
+                  LinearLoader(width: 150, size: BreakpointSize.medium, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const LinearLoader(width: 150, size: BreakpointSize.large),
+                  LinearLoader(width: 150, size: BreakpointSize.large, active: _active),
                   SizedBox(width: context.spacings.tiny),
-                  const LinearLoader(width: 150, size: BreakpointSize.gigantic),
+                  LinearLoader(width: 150, size: BreakpointSize.gigantic, active: _active),
                 ],
               ),
             ],

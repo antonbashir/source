@@ -10,9 +10,11 @@ class CircularLoader extends StatelessWidget {
   final double? strokeWidth;
   final BreakpointSize? size;
   final StrokeCap? strokeCap;
+  final bool active;
 
   const CircularLoader({
     super.key,
+    this.active = true,
     this.color,
     this.backgroundColor,
     this.sizeValue,
@@ -34,6 +36,7 @@ class CircularLoader extends StatelessWidget {
       height: effectiveSize,
       width: effectiveSize,
       child: CircularProgressIndicator(
+        active: active,
         color: effectiveColor,
         backgroundColor: effectiveBackgroundColor,
         strokeWidth: effectiveStrokeWidth,

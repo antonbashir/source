@@ -4,6 +4,7 @@ import 'package:design/painters/progress/linear.dart';
 import 'package:flutter/widgets.dart';
 
 class LinearProgressIndicator extends BaseProgressIndicator {
+  final bool active;
   final BorderRadiusGeometry containerRadius;
   final BorderRadiusGeometry progressRadius;
   final double minHeight;
@@ -14,6 +15,7 @@ class LinearProgressIndicator extends BaseProgressIndicator {
     required this.minHeight,
     required this.containerRadius,
     required this.progressRadius,
+    this.active = true,
     super.key,
     super.value,
     super.valueColor,
@@ -38,6 +40,8 @@ class _LinearProgressIndicatorState extends State<LinearProgressIndicator> with 
     );
 
     if (widget.value == null) _controller.repeat();
+
+    if (!widget.active) _controller.stop();
   }
 
   @override
@@ -49,7 +53,7 @@ class _LinearProgressIndicatorState extends State<LinearProgressIndicator> with 
       return;
     }
 
-    if (widget.value != null && _controller.isAnimating) {
+    if ((widget.value != null || !widget.active) && _controller.isAnimating) {
       _controller.stop();
     }
   }

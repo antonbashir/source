@@ -4,6 +4,7 @@ import 'package:design/widgets/primitives/indicators/linear.dart';
 import 'package:flutter/widgets.dart';
 
 class LinearLoader extends StatelessWidget {
+  final bool active;
   final BorderRadiusGeometry? borderRadius;
   final Color? color;
   final Color? backgroundColor;
@@ -13,6 +14,7 @@ class LinearLoader extends StatelessWidget {
 
   const LinearLoader({
     super.key,
+    this.active = true,
     this.borderRadius,
     this.color,
     this.backgroundColor,
@@ -33,6 +35,7 @@ class LinearLoader extends StatelessWidget {
       return SizedBox(
         width: width,
         child: LinearProgressIndicator(
+          active: active,
           color: effectiveColor,
           backgroundColor: effectiveBackgroundColor,
           containerRadius: effectiveBorderRadius,
@@ -43,6 +46,7 @@ class LinearLoader extends StatelessWidget {
     }
 
     return LinearProgressIndicator(
+      active: active,
       color: effectiveColor,
       backgroundColor: effectiveBackgroundColor,
       containerRadius: effectiveBorderRadius,

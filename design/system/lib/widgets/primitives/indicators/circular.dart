@@ -6,12 +6,14 @@ import 'package:flutter/widgets.dart';
 class CircularProgressIndicator extends BaseProgressIndicator {
   final double strokeWidth;
   final StrokeCap strokeCap;
+  final bool active;
 
   const CircularProgressIndicator({
     required super.backgroundColor,
     required super.color,
     required this.strokeWidth,
     required this.strokeCap,
+    this.active = true,
     super.key,
     super.value,
     super.valueColor,
@@ -36,6 +38,8 @@ class _CircularProgressIndicatorState extends State<CircularProgressIndicator> w
     );
 
     if (widget.value == null) _controller.repeat();
+
+    if (!widget.active) _controller.stop();
   }
 
   @override
@@ -47,7 +51,7 @@ class _CircularProgressIndicatorState extends State<CircularProgressIndicator> w
       return;
     }
 
-    if (widget.value != null && _controller.isAnimating) {
+    if ((widget.value != null || !widget.active) && _controller.isAnimating) {
       _controller.stop();
     }
   }
