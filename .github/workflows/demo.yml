@@ -23,12 +23,11 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: master
-          flutter-version: 3.19.5
+          channel: beta
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build
-        run: cd design/demo && flutter pub get && rm web/index.html && cp web/index.wasm.html web/index.html && flutter build web --wasm --base-href "/source/" && ls -al && ls -al build
+        run: cd design/demo && flutter pub get && rm web/index.html && cp web/index.wasm.html web/index.html && flutter build web --wasm --base-href "/source/"
       - name: Upload
         uses: actions/upload-pages-artifact@v2
         with:
