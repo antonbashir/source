@@ -15,7 +15,7 @@ final _buttonConfiguration = Breakpoints(
   {
     BreakpointSize.tiny: ButtonConfiguration(
       borderWidth: _borders.inactiveWidth,
-      borderRadius: _borders.tiny,
+      borderRadius: _borders.small,
       gap: 4,
       height: 24,
       iconSizeValue: 16,
