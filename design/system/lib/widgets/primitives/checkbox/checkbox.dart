@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/effects/focus.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/model/state.dart';
@@ -94,6 +95,7 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
   Widget build(BuildContext context) {
     final effectiveConfiguration = context.theme.checkboxTheme().configuration.select(widget.size);
     final effectiveSize = widget.sizeValue ?? context.theme.checkboxTheme().configuration.select(widget.size).size;
+    final effectiveBorderType = effectiveConfiguration.borderType;
     final effectiveBorderRadius = effectiveConfiguration.borderRadius;
     final effectiveActiveColor = widget.activeColor ?? context.theme.checkboxTheme().style.activeColor;
     final effectiveInactiveColor = widget.inactiveColor ?? context.theme.checkboxTheme().style.inactiveColor;
@@ -144,7 +146,10 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
                     ..checkColor = effectiveCheckColor
                     ..value = selected
                     ..previousValue = _previousValue
-                    ..shape = SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context))
+                    ..shape = switch (effectiveBorderType) {
+                      BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                    }
                     ..side = _resolveSide(BorderSide(color: effectiveBorderColor)),
                 ),
               ),

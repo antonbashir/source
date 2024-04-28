@@ -2,7 +2,7 @@ part of '../defaults.dart';
 
 final _buttonConfiguration = Breakpoints(
   ButtonConfiguration(
-    borderWidth: _borders.borderWidth,
+    borderWidth: _borders.inactiveWidth,
     borderRadius: _borders.small,
     gap: 8,
     height: 40,
@@ -10,10 +10,11 @@ final _buttonConfiguration = Breakpoints(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     textStyle: _typography.base.titleMedium,
     minTouchTargetSize: 40,
+    borderType: _borders.type,
   ),
   {
     BreakpointSize.tiny: ButtonConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.tiny,
       gap: 4,
       height: 24,
@@ -21,9 +22,10 @@ final _buttonConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       textStyle: _typography.base.titleMedium,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     ),
     BreakpointSize.small: ButtonConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.small,
       gap: 4,
       height: 32,
@@ -31,9 +33,10 @@ final _buttonConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       textStyle: _typography.base.titleMedium,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     ),
     BreakpointSize.medium: ButtonConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.small,
       gap: 8,
       height: 40,
@@ -41,9 +44,10 @@ final _buttonConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       textStyle: _typography.base.titleMedium,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     ),
     BreakpointSize.large: ButtonConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.small,
       gap: 12,
       height: 48,
@@ -51,9 +55,10 @@ final _buttonConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       textStyle: _typography.base.titleLarge,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     ),
     BreakpointSize.gigantic: ButtonConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.small,
       gap: 16,
       height: 56,
@@ -61,6 +66,7 @@ final _buttonConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       textStyle: _typography.base.titleLarge,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     )
   },
 );

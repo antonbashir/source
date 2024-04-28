@@ -7,6 +7,7 @@ final _checkboxConfiguration = Breakpoints(
     tapAreaSizeValue: 24,
     size: 24,
     strokeWidth: 2,
+    borderType: _borders.type,
   ),
   {
     BreakpointSize.tiny: CheckboxConfiguration(
@@ -15,6 +16,7 @@ final _checkboxConfiguration = Breakpoints(
       tapAreaSizeValue: 16,
       size: 16,
       strokeWidth: 2,
+      borderType: _borders.type,
     ),
     BreakpointSize.small: CheckboxConfiguration(
       borderRadius: _borders.tiny,
@@ -22,6 +24,7 @@ final _checkboxConfiguration = Breakpoints(
       tapAreaSizeValue: 24,
       size: 24,
       strokeWidth: 2,
+      borderType: _borders.type,
     ),
     BreakpointSize.medium: CheckboxConfiguration(
       borderRadius: _borders.tiny,
@@ -29,6 +32,7 @@ final _checkboxConfiguration = Breakpoints(
       tapAreaSizeValue: 32,
       size: 32,
       strokeWidth: 2,
+      borderType: _borders.type,
     ),
   },
 );

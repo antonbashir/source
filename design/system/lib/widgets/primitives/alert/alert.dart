@@ -160,7 +160,7 @@ class _AlertState extends State<Alert> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final effectiveBorderType = widget.borderType ?? context.theme.alertTheme().configuration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? context.theme.alertTheme().configuration.borderRadius;
-    final effectiveBorderWidth = widget.borderWidth ?? context.tokens.borders.borderWidth;
+    final effectiveBorderWidth = widget.borderWidth ?? context.tokens.borders.inactiveWidth;
     final effectiveHorizontalGap = widget.horizontalGap ?? context.theme.alertTheme().configuration.horizontalGap;
     final effectiveVerticalGap = widget.verticalGap ?? context.theme.alertTheme().configuration.verticalGap;
     final effectiveMinimumHeight = widget.minimumHeight ?? context.theme.alertTheme().configuration.minimumHeight;

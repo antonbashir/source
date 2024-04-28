@@ -7,4 +7,5 @@ final _labelConfiguration = LabelConfiguration(
   padding: const EdgeInsets.all(12),
   labelTextStyle: _typography.base.titleMedium,
   contentTextStyle: _typography.base.bodyMedium,
+  borderType: _borders.type,
 );

@@ -2,7 +2,7 @@ part of '../defaults.dart';
 
 final _chipConfiguration = Breakpoints(
   ChipConfiguration(
-    borderWidth: _borders.borderWidth,
+    borderWidth: _borders.inactiveWidth,
     borderRadius: _borders.large,
     gap: 8,
     height: 40,
@@ -10,10 +10,11 @@ final _chipConfiguration = Breakpoints(
     padding: const EdgeInsets.symmetric(horizontal: 16),
     textStyle: _typography.base.labelMedium,
     minTouchTargetSize: 40,
+    borderType: _borders.type,
   ),
   {
     BreakpointSize.small: ChipConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.large,
       gap: 8,
       height: 32,
@@ -21,9 +22,10 @@ final _chipConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       textStyle: _typography.base.labelMedium,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     ),
     BreakpointSize.medium: ChipConfiguration(
-      borderWidth: _borders.borderWidth,
+      borderWidth: _borders.inactiveWidth,
       borderRadius: _borders.large,
       gap: 8,
       height: 40,
@@ -31,6 +33,7 @@ final _chipConfiguration = Breakpoints(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       textStyle: _typography.base.labelMedium,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     )
   },
 );

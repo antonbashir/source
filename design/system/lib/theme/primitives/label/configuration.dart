@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class LabelConfiguration implements ThemeComponent<LabelConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double verticalGap;
   final double minimumHeight;
@@ -13,6 +15,7 @@ class LabelConfiguration implements ThemeComponent<LabelConfiguration> {
   final TextStyle contentTextStyle;
 
   const LabelConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.verticalGap,
     required this.minimumHeight,
@@ -23,6 +26,7 @@ class LabelConfiguration implements ThemeComponent<LabelConfiguration> {
 
   @override
   LabelConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? verticalGap,
     double? minimumHeight,
@@ -32,6 +36,7 @@ class LabelConfiguration implements ThemeComponent<LabelConfiguration> {
     TextStyle? contentTextStyle,
   }) =>
       LabelConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         verticalGap: verticalGap ?? this.verticalGap,
         minimumHeight: minimumHeight ?? this.minimumHeight,
@@ -44,6 +49,7 @@ class LabelConfiguration implements ThemeComponent<LabelConfiguration> {
   LabelConfiguration lerp(ThemeComponent<LabelConfiguration>? other, double t) {
     if (other is! LabelConfiguration) return this;
     return LabelConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       verticalGap: lerpDouble(verticalGap, other.verticalGap, t)!,
       minimumHeight: lerpDouble(minimumHeight, other.minimumHeight, t)!,

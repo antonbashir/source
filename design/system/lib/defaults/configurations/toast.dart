@@ -6,5 +6,5 @@ final _toastConfiguration = ToastConfiguration(
   verticalGap: 8,
   contentPadding: const EdgeInsets.all(8),
   textStyle: _typography.base.bodyLarge,
-  borderType: BorderType.squircle,
+  borderType: _borders.type,
 );

@@ -1,11 +1,13 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class ChipConfiguration implements ThemeComponent<ChipConfiguration> {
   final double borderWidth;
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double gap;
   final double height;
@@ -15,6 +17,7 @@ class ChipConfiguration implements ThemeComponent<ChipConfiguration> {
   final double minTouchTargetSize;
 
   const ChipConfiguration({
+    required this.borderType,
     required this.borderWidth,
     required this.borderRadius,
     required this.gap,
@@ -28,6 +31,7 @@ class ChipConfiguration implements ThemeComponent<ChipConfiguration> {
   @override
   ChipConfiguration copyWith({
     double? borderWidth,
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? gap,
     double? height,
@@ -37,6 +41,7 @@ class ChipConfiguration implements ThemeComponent<ChipConfiguration> {
     double? minTouchTargetSize,
   }) =>
       ChipConfiguration(
+        borderType: borderType ?? this.borderType,
         borderWidth: borderWidth ?? this.borderWidth,
         borderRadius: borderRadius ?? this.borderRadius,
         gap: gap ?? this.gap,
@@ -51,6 +56,7 @@ class ChipConfiguration implements ThemeComponent<ChipConfiguration> {
   ChipConfiguration lerp(ChipConfiguration? other, double t) {
     if (other is! ChipConfiguration) return this;
     return ChipConfiguration(
+      borderType: other.borderType,
       borderWidth: lerpDouble(borderWidth, other.borderWidth, t)!,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       gap: lerpDouble(gap, other.gap, t)!,

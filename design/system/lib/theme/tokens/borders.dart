@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,16 +10,18 @@ class Borders implements ThemeComponent<Borders> {
   final BorderRadiusGeometry small;
   final BorderRadiusGeometry medium;
   final BorderRadiusGeometry large;
-  final double borderWidth;
-  final double activeBorderWidth;
+  final double inactiveWidth;
+  final double activeWidth;
+  final BorderType type;
 
   const Borders({
     required this.tiny,
     required this.small,
     required this.medium,
     required this.large,
-    required this.borderWidth,
-    required this.activeBorderWidth,
+    required this.inactiveWidth,
+    required this.activeWidth,
+    required this.type,
   });
 
   @override
@@ -29,14 +32,16 @@ class Borders implements ThemeComponent<Borders> {
     BorderRadiusGeometry? large,
     double? borderWidth,
     double? activeBorderWidth,
+    BorderType? type,
   }) =>
       Borders(
         tiny: tiny ?? this.tiny,
         small: small ?? this.small,
         medium: medium ?? this.medium,
         large: large ?? this.large,
-        borderWidth: borderWidth ?? this.borderWidth,
-        activeBorderWidth: activeBorderWidth ?? this.activeBorderWidth,
+        inactiveWidth: borderWidth ?? this.inactiveWidth,
+        activeWidth: activeBorderWidth ?? this.activeWidth,
+        type: type ?? this.type,
       );
 
   @override
@@ -47,8 +52,9 @@ class Borders implements ThemeComponent<Borders> {
       small: BorderRadiusGeometry.lerp(small, other.small, t)!,
       medium: BorderRadiusGeometry.lerp(medium, other.medium, t)!,
       large: BorderRadiusGeometry.lerp(large, other.large, t)!,
-      borderWidth: lerpDouble(borderWidth, other.borderWidth, t)!,
-      activeBorderWidth: lerpDouble(activeBorderWidth, other.activeBorderWidth, t)!,
+      inactiveWidth: lerpDouble(inactiveWidth, other.inactiveWidth, t)!,
+      activeWidth: lerpDouble(activeWidth, other.activeWidth, t)!,
+      type: other.type,
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class ListItemConfiguration implements ThemeComponent<ListItemConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final double verticalGap;
   final double minimumHeight;
@@ -14,6 +16,7 @@ class ListItemConfiguration implements ThemeComponent<ListItemConfiguration> {
   final TextStyle contentTextStyle;
 
   const ListItemConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.verticalGap,
     required this.minTouchTargetSize,
@@ -25,6 +28,7 @@ class ListItemConfiguration implements ThemeComponent<ListItemConfiguration> {
 
   @override
   ListItemConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     double? verticalGap,
     double? minimumHeight,
@@ -34,6 +38,7 @@ class ListItemConfiguration implements ThemeComponent<ListItemConfiguration> {
     TextStyle? contentTextStyle,
   }) =>
       ListItemConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         verticalGap: verticalGap ?? this.verticalGap,
         minimumHeight: minimumHeight ?? this.minimumHeight,
@@ -47,6 +52,7 @@ class ListItemConfiguration implements ThemeComponent<ListItemConfiguration> {
   ListItemConfiguration lerp(ThemeComponent<ListItemConfiguration>? other, double t) {
     if (other is! ListItemConfiguration) return this;
     return ListItemConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       verticalGap: lerpDouble(verticalGap, other.verticalGap, t)!,
       minimumHeight: lerpDouble(minimumHeight, other.minimumHeight, t)!,

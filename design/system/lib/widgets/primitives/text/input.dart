@@ -446,7 +446,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
       borderRadius: effectiveBorderRadius.squircle(context),
       side: BorderSide(
         color: effectiveInactiveBorderColor,
-        width: context.borders.borderWidth,
+        width: context.borders.inactiveWidth,
       ),
     );
 
@@ -454,7 +454,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
       borderRadius: effectiveBorderRadius.squircle(context),
       side: BorderSide(
         color: effectiveHoverBorderColor,
-        width: context.borders.activeBorderWidth,
+        width: context.borders.activeWidth,
       ),
     );
 
@@ -462,7 +462,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
       borderRadius: effectiveBorderRadius.squircle(context),
       side: BorderSide(
         color: effectiveActiveBorderColor,
-        width: context.borders.activeBorderWidth,
+        width: context.borders.activeWidth,
       ),
     );
 
@@ -470,7 +470,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
       borderRadius: effectiveBorderRadius.squircle(context),
       side: BorderSide(
         color: widget.errorBorderColor ?? effectiveErrorColor,
-        width: context.borders.activeBorderWidth,
+        width: context.borders.activeWidth,
       ),
     );
 

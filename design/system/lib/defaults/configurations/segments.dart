@@ -12,8 +12,8 @@ final _segmentedControlConfiguration = Breakpoints(
     gap: 4,
     padding: const EdgeInsets.all(4),
     minTouchTargetSize: 40,
-    borderType: BorderType.squircle,
-    segmentBorderType: BorderType.squircle,
+    borderType: _borders.type,
+    segmentBorderType: _borders.type,
   ),
   {
     BreakpointSize.small: SegmentedControlConfiguration(
@@ -27,8 +27,8 @@ final _segmentedControlConfiguration = Breakpoints(
       gap: 4,
       padding: const EdgeInsets.all(4),
       minTouchTargetSize: 40,
-      borderType: BorderType.squircle,
-      segmentBorderType: BorderType.squircle,
+      borderType: _borders.type,
+      segmentBorderType: _borders.type,
     ),
     BreakpointSize.medium: SegmentedControlConfiguration(
       segmentBorderRadius: _borders.small,
@@ -41,8 +41,8 @@ final _segmentedControlConfiguration = Breakpoints(
       gap: 4,
       padding: const EdgeInsets.all(4),
       minTouchTargetSize: 40,
-      borderType: BorderType.squircle,
-      segmentBorderType: BorderType.squircle,
+      borderType: _borders.type,
+      segmentBorderType: _borders.type,
     )
   },
 );

@@ -848,6 +848,7 @@ final _borders = Borders(
   small: BorderRadius.all(_radiuses.small),
   medium: BorderRadius.all(_radiuses.medium),
   large: BorderRadius.all(_radiuses.large),
-  borderWidth: 1,
-  activeBorderWidth: 1.2,
+  inactiveWidth: 1,
+  activeWidth: 1.2,
+  type: BorderType.rounded,
 );

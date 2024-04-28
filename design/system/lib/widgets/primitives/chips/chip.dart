@@ -1,4 +1,5 @@
 import 'package:design/borders/squircle/border.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/constants/breakpoints.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/theme/tokens/colors.dart';
@@ -11,6 +12,7 @@ class Chip extends StatefulWidget {
   final bool isActive;
   final bool showBorder;
   final bool showFocusEffect;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? activeBorderColor;
   final Color? backgroundColor;
@@ -47,6 +49,7 @@ class Chip extends StatefulWidget {
     this.isActive = false,
     this.showBorder = true,
     this.showFocusEffect = true,
+    this.borderType,
     this.borderRadius,
     this.activeBorderColor,
     this.backgroundColor,
@@ -84,6 +87,7 @@ class Chip extends StatefulWidget {
     this.isActive = false,
     this.showBorder = true,
     this.showFocusEffect = true,
+    this.borderType,
     this.borderRadius,
     this.activeBorderColor,
     this.activeBackgroundColor,
@@ -138,6 +142,7 @@ class _ChipState extends State<Chip> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final effectiveChipConfiguration = context.theme.chipTheme().configuration.select(widget.size);
+    final effectiveBorderType = widget.borderType ?? effectiveChipConfiguration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? effectiveChipConfiguration.borderRadius;
     final effectiveBorderWidth = widget.borderWidth ?? effectiveChipConfiguration.borderWidth;
     final effectiveHeight = widget.height ?? effectiveChipConfiguration.height;
@@ -211,16 +216,25 @@ class _ChipState extends State<Chip> with SingleTickerProviderStateMixin {
                 constraints: BoxConstraints(minWidth: effectiveHeight),
                 decoration: widget.decoration ??
                     ShapeDecoration(
-                      color: _backgroundColor!.value,
-                      shape: SquircleBorder(
-                        borderRadius: effectiveBorderRadius.squircle(context),
-                        side: BorderSide(
-                          color: widget.showBorder ? _borderColor!.value! : Colors.transparent,
-                          width: widget.showBorder ? effectiveBorderWidth : 0,
-                          style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
-                        ),
-                      ),
-                    ),
+                        color: _backgroundColor!.value,
+                        shape: switch (effectiveBorderType) {
+                          BorderType.rounded => RoundedRectangleBorder(
+                              borderRadius: effectiveBorderRadius,
+                              side: BorderSide(
+                                color: widget.showBorder ? _borderColor!.value! : Colors.transparent,
+                                width: widget.showBorder ? effectiveBorderWidth : 0,
+                                style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
+                              ),
+                            ),
+                          BorderType.squircle => SquircleBorder(
+                              borderRadius: effectiveBorderRadius.squircle(context),
+                              side: BorderSide(
+                                color: widget.showBorder ? _borderColor!.value! : Colors.transparent,
+                                width: widget.showBorder ? effectiveBorderWidth : 0,
+                                style: widget.showBorder ? BorderStyle.solid : BorderStyle.none,
+                              ),
+                            ),
+                        }),
                 child: child,
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/assertions.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/theme/tokens/colors.dart';
 import 'package:design/widgets/primitives/control/control.dart';
@@ -12,6 +13,7 @@ class ListItem extends StatefulWidget {
   final Widget label;
   final CrossAxisAlignment? outerCrossAxisAlignment;
   final CrossAxisAlignment? innerCrossAxisAlignment;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Color? hoverEffectColor;
@@ -38,6 +40,7 @@ class ListItem extends StatefulWidget {
     this.autofocus = false,
     this.outerCrossAxisAlignment,
     this.innerCrossAxisAlignment,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.hoverEffectColor,
@@ -112,6 +115,7 @@ class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final effectiveBorderType = widget.borderType ?? context.theme.listItemTheme().configuration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? context.theme.listItemTheme().configuration.borderRadius;
     final effectiveMinimumHeaderHeight = widget.height ?? context.theme.listItemTheme().configuration.minimumHeight;
     final effectiveVerticalGap = widget.verticalGap ?? context.theme.listItemTheme().configuration.verticalGap;
@@ -160,9 +164,10 @@ class _ListItemState extends State<ListItem> with TickerProviderStateMixin {
               decoration: widget.decoration ??
                   ShapeDecoration(
                     color: _backgroundColor!.value,
-                    shape: SquircleBorder(
-                      borderRadius: effectiveBorderRadius.squircle(context),
-                    ),
+                    shape: switch (effectiveBorderType) {
+                      BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                      BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
+                    },
                   ),
               child: child,
             ),

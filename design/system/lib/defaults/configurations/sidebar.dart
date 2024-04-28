@@ -10,7 +10,7 @@ final _sidebarConfiguration = SidebarConfiguration(
   textStyle: _typography.base.titleMedium,
   minTouchTargetSize: 40,
   tabBarPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-  borderType: BorderType.squircle,
+  borderType: _borders.type,
   tabBarBorderRadius: BorderRadius.zero,
-  tabBarBorderType: BorderType.squircle, 
+  tabBarBorderType: _borders.type,
 );

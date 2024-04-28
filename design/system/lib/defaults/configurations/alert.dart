@@ -8,4 +8,5 @@ final _alertConfiguration = AlertConfiguration(
   padding: const EdgeInsets.all(16),
   contentTextStyle: _typography.base.bodyMedium,
   labelTextStyle: _typography.base.titleMedium,
+  borderType: _borders.type,
 );

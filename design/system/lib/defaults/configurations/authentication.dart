@@ -7,5 +7,5 @@ final _authenticationCodeConfiguration = AuthenticationCodeConfiguration(
   width: 48,
   textStyle: _typography.base.bodyLarge,
   errorTextStyle: _typography.base.bodyMedium,
-  borderType: BorderType.squircle,
+  borderType: _borders.type,
 );

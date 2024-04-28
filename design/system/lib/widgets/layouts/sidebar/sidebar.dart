@@ -56,11 +56,11 @@ class _SidebarState extends State<Sidebar> {
           shape: switch (effectiveConfiguration.tabBarBorderType) {
             BorderType.squircle => SquircleBorder(
                 borderRadius: effectiveConfiguration.tabBarBorderRadius.squircle(context),
-                side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.borderWidth),
+                side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.inactiveWidth),
               ),
             BorderType.rounded => RoundedRectangleBorder(
                 borderRadius: effectiveConfiguration.tabBarBorderRadius,
-                side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.borderWidth),
+                side: BorderSide(color: effectiveStyle.tabBarBorderColor, width: context.borders.inactiveWidth),
               )
           },
           color: widget.tabBarBackgroundColor ?? effectiveStyle.tabBarBackgroundColor,

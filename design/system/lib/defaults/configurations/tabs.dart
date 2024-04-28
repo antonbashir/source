@@ -11,6 +11,7 @@ final _tabBarConfiguration = Breakpoints(
     textStyle: _typography.base.titleMedium,
     gap: 8,
     minTouchTargetSize: 40,
+    borderType: _borders.type,
   ),
   {
     BreakpointSize.small: TabBarConfiguration(
@@ -23,6 +24,7 @@ final _tabBarConfiguration = Breakpoints(
       textStyle: _typography.base.titleSmall,
       minTouchTargetSize: 40,
       gap: 8,
+      borderType: _borders.type,
     ),
     BreakpointSize.medium: TabBarConfiguration(
       borderRadius: _borders.small,
@@ -34,6 +36,7 @@ final _tabBarConfiguration = Breakpoints(
       textStyle: _typography.base.titleMedium,
       gap: 8,
       minTouchTargetSize: 40,
+      borderType: _borders.type,
     )
   },
 );

@@ -223,15 +223,11 @@ class _SwitchState extends State<Switch> with SingleTickerProviderStateMixin {
     _trackDecorationAnimation = DecorationTween(
       begin: ShapeDecoration(
         color: effectiveInactiveTrackColor,
-        shape: SquircleBorder(
-          borderRadius: SquircleBorderRadius(cornerRadius: effectiveHeight / 2),
-        ),
+        shape: SquircleBorder(borderRadius: SquircleBorderRadius(cornerRadius: effectiveHeight / 2)),
       ),
       end: ShapeDecoration(
         color: effectiveActiveTrackColor,
-        shape: SquircleBorder(
-          borderRadius: SquircleBorderRadius(cornerRadius: effectiveHeight / 2),
-        ),
+        shape: SquircleBorder(borderRadius: SquircleBorderRadius(cornerRadius: effectiveHeight / 2)),
       ),
     ).animate(_curvedAnimation!);
 
@@ -372,9 +368,7 @@ class _SwitchState extends State<Switch> with SingleTickerProviderStateMixin {
                                     decoration: ShapeDecoration(
                                       color: effectiveThumbColor,
                                       shadows: effectiveThumbShadow,
-                                      shape: SquircleBorder(
-                                        borderRadius: effectiveBorderRadius.squircle(context),
-                                      ),
+                                      shape: SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
                                     ),
                                     child: FadeTransition(
                                       opacity: _thumbFadeAnimation!,

@@ -8,4 +8,5 @@ final _listItemConfiguration = ListItemConfiguration(
   labelTextStyle: _typography.base.titleMedium,
   contentTextStyle: _typography.base.bodyMedium,
   minTouchTargetSize: 40,
+  borderType: _borders.type,
 );

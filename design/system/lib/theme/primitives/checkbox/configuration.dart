@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:design/constants/borders.dart';
 import 'package:design/model/mixins.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class CheckboxConfiguration implements ThemeComponent<CheckboxConfiguration> {
+  final BorderType borderType;
   final BorderRadiusGeometry borderRadius;
   final TextStyle textStyle;
   final double tapAreaSizeValue;
@@ -12,6 +14,7 @@ class CheckboxConfiguration implements ThemeComponent<CheckboxConfiguration> {
   final double strokeWidth;
 
   const CheckboxConfiguration({
+    required this.borderType,
     required this.borderRadius,
     required this.textStyle,
     required this.tapAreaSizeValue,
@@ -21,6 +24,7 @@ class CheckboxConfiguration implements ThemeComponent<CheckboxConfiguration> {
 
   @override
   CheckboxConfiguration copyWith({
+    BorderType? borderType,
     BorderRadiusGeometry? borderRadius,
     TextStyle? textStyle,
     double? tapAreaSizeValue,
@@ -28,6 +32,7 @@ class CheckboxConfiguration implements ThemeComponent<CheckboxConfiguration> {
     double? strokeWidth,
   }) =>
       CheckboxConfiguration(
+        borderType: borderType ?? this.borderType,
         borderRadius: borderRadius ?? this.borderRadius,
         textStyle: textStyle ?? this.textStyle,
         tapAreaSizeValue: tapAreaSizeValue ?? this.tapAreaSizeValue,
@@ -39,6 +44,7 @@ class CheckboxConfiguration implements ThemeComponent<CheckboxConfiguration> {
   CheckboxConfiguration lerp(CheckboxConfiguration? other, double t) {
     if (other is! CheckboxConfiguration) return this;
     return CheckboxConfiguration(
+      borderType: other.borderType,
       borderRadius: BorderRadiusGeometry.lerp(borderRadius, other.borderRadius, t)!,
       textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
       tapAreaSizeValue: lerpDouble(tapAreaSizeValue, other.tapAreaSizeValue, t)!,

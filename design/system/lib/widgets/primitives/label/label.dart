@@ -1,5 +1,6 @@
 import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/assertions.dart';
+import 'package:design/constants/borders.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:flutter/widgets.dart';
 
@@ -7,6 +8,7 @@ class Label extends StatefulWidget {
   final Widget label;
   final CrossAxisAlignment? outerCrossAxisAlignment;
   final CrossAxisAlignment? innerCrossAxisAlignment;
+  final BorderType? borderType;
   final BorderRadiusGeometry? borderRadius;
   final Color? backgroundColor;
   final Decoration? decoration;
@@ -24,6 +26,7 @@ class Label extends StatefulWidget {
     required this.label,
     this.outerCrossAxisAlignment,
     this.innerCrossAxisAlignment,
+    this.borderType,
     this.borderRadius,
     this.backgroundColor,
     this.decoration,
@@ -54,6 +57,7 @@ class _ListItemState extends State<Label> with TickerProviderStateMixin {
     final effectiveContentTextStyle = context.theme.labelTheme().configuration.contentTextStyle;
     final effectiveMinimumHeaderHeight = widget.height ?? context.theme.labelTheme().configuration.minimumHeight;
     final effectiveBackgroundColor = widget.backgroundColor ?? context.theme.labelTheme().style.backgroundColor;
+    final effectiveBorderType = widget.borderType ?? context.theme.labelTheme().configuration.borderType;
     final effectiveBorderRadius = widget.borderRadius ?? context.theme.labelTheme().configuration.borderRadius;
     return IconTheme(
       data: IconThemeData(color: effectiveIconColor),
@@ -67,9 +71,10 @@ class _ListItemState extends State<Label> with TickerProviderStateMixin {
           decoration: widget.decoration ??
               ShapeDecoration(
                 color: effectiveBackgroundColor,
-                shape: SquircleBorder(
-                  borderRadius: effectiveBorderRadius.squircle(context),
-                ),
+                shape: switch (effectiveBorderType) {
+                  BorderType.rounded => RoundedRectangleBorder(borderRadius: effectiveBorderRadius),
+                  BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context))
+                },
               ),
           child: Row(
             crossAxisAlignment: widget.outerCrossAxisAlignment ?? CrossAxisAlignment.center,

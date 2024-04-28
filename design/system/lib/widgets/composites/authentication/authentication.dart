@@ -524,7 +524,7 @@ class _AuthenticationCodeState extends State<AuthenticationCode> with TickerProv
   Widget build(BuildContext context) {
     _effectiveBorderType = widget.borderType ?? context.theme.authenticationCodeTheme().configuration.borderType;
     _effectiveBorderRadius = widget.borderRadius ?? context.theme.authenticationCodeTheme().configuration.borderRadius;
-    _effectiveBorderWidth = widget.borderWidth ?? context.tokens.borders.borderWidth;
+    _effectiveBorderWidth = widget.borderWidth ?? context.tokens.borders.inactiveWidth;
     _effectiveGap = widget.gap ?? context.theme.authenticationCodeTheme().configuration.gap;
     _effectiveHeight = widget.fieldHeight ?? context.theme.authenticationCodeTheme().configuration.height;
     _effectiveWidth = widget.fieldWidth ?? context.theme.authenticationCodeTheme().configuration.width;
