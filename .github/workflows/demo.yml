@@ -31,7 +31,7 @@ jobs:
       - name: Upload
         uses: actions/upload-pages-artifact@v2
         with:
-          path: design/demo/build/web_wasm
+          path: design/demo/build/web
       - name: Deployment
         id: deployment
         uses: actions/deploy-pages@v2
