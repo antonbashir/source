@@ -25,6 +25,14 @@ class _Inputs extends StatelessWidget {
                       size: BreakpointSize.small,
                       hintText: "Here...",
                       helper: Text("Print something..."),
+                      enabled: false,
+                    ),
+                    SizedBox(width: context.spacings.tiny),
+                    const TextInput(
+                      width: 250,
+                      size: BreakpointSize.small,
+                      hintText: "Here...",
+                      helper: Text("Print something..."),
                     ),
                     SizedBox(width: context.spacings.tiny),
                     const TextInput(
@@ -55,6 +63,16 @@ class _Inputs extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    const TextInput(
+                      width: 250,
+                      size: BreakpointSize.small,
+                      hintText: "Here...",
+                      helper: Text("Print something..."),
+                      leading: Icon(Icons.search),
+                      trailing: Icon(Icons.check),
+                      enabled: false,
+                    ),
+                    SizedBox(width: context.spacings.tiny),
                     const TextInput(
                       width: 250,
                       size: BreakpointSize.small,
@@ -98,6 +116,24 @@ class _Inputs extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    TextInput(
+                      width: 250,
+                      size: BreakpointSize.small,
+                      hintText: "Here...",
+                      helper: const Text("Print something..."),
+                      hasFloatingLabel: true,
+                      leading: const Icon(Icons.search),
+                      enabled: false,
+                      trailing: Padding(
+                        padding: EdgeInsets.symmetric(vertical: context.spacings.small),
+                        child: Button.icon(
+                          size: BreakpointSize.tiny,
+                          icon: const Icon(Icons.clear),
+                          onTap: () {},
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: context.spacings.tiny),
                     TextInput(
                       width: 250,
                       size: BreakpointSize.small,
