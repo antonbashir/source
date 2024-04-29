@@ -18,10 +18,8 @@ import 'package:design/widgets/primitives/text/feedback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart' as services show TextInputConfiguration;
 import 'package:flutter/services.dart' hide TextInputConfiguration;
-import 'package:flutter/widgets.dart';
 export 'package:flutter/services.dart' show SmartDashesType, SmartQuotesType, TextCapitalization, TextInputAction, TextInputType;
 
 typedef TextInputErrorBuilder = Widget Function(BuildContext context, String? errorText);
@@ -262,7 +260,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
 
   MaxLengthEnforcement get _effectiveMaxLengthEnforcement => widget.maxLengthEnforcement ?? LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(defaultTargetPlatform);
 
-  Set<VisualState> get _states => <VisualState>{
+  Set<VisualState> get _state => <VisualState>{
         if (!_isEnabled) VisualState.disabled,
         if (_isHovering) VisualState.hovered,
         if (_hasFocus) VisualState.focused,
@@ -537,7 +535,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
 
     final MouseCursor effectiveMouseCursor = VisualStateProperty.resolveAs<MouseCursor>(
       widget.mouseCursor ?? VisualStateMouseCursor.textable,
-      _states,
+      _state,
     );
 
     final List<TextInputFormatter> formatters = <TextInputFormatter>[
