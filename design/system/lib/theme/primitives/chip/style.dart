@@ -3,13 +3,13 @@ import 'package:flutter/widgets.dart';
 
 @immutable
 class ChipStyle implements ThemeComponent<ChipStyle> {
-  final Color activeBorderColor;
+  final Color activeColor;
   final Color backgroundColor;
   final Color activeBackgroundColor;
   final Color contentColor;
 
   const ChipStyle({
-    required this.activeBorderColor,
+    required this.activeColor,
     required this.backgroundColor,
     required this.activeBackgroundColor,
     required this.contentColor,
@@ -17,13 +17,13 @@ class ChipStyle implements ThemeComponent<ChipStyle> {
 
   @override
   ChipStyle copyWith({
-    Color? activeBorderColor,
+    Color? activeColor,
     Color? backgroundColor,
     Color? activeBackgroundColor,
     Color? contentColor,
   }) =>
       ChipStyle(
-        activeBorderColor: activeBorderColor ?? this.activeBorderColor,
+        activeColor: activeColor ?? this.activeColor,
         backgroundColor: backgroundColor ?? this.backgroundColor,
         activeBackgroundColor: activeBackgroundColor ?? this.activeBackgroundColor,
         contentColor: contentColor ?? this.contentColor,
@@ -33,7 +33,7 @@ class ChipStyle implements ThemeComponent<ChipStyle> {
   ChipStyle lerp(ChipStyle? other, double t) {
     if (other is! ChipStyle) return this;
     return ChipStyle(
-      activeBorderColor: Color.lerp(activeBorderColor, other.activeBorderColor, t)!,
+      activeColor: Color.lerp(activeColor, other.activeColor, t)!,
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
       activeBackgroundColor: Color.lerp(activeBackgroundColor, other.activeBackgroundColor, t)!,
       contentColor: Color.lerp(contentColor, other.contentColor, t)!,

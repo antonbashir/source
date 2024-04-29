@@ -3,7 +3,7 @@ part of '../defaults.dart';
 final _lightChip = ThemeMutable(
   (Tokens tokens) => ChipTheme(
     style: ChipStyle(
-      activeBorderColor: tokens.colors.main,
+      activeColor: tokens.colors.main,
       backgroundColor: Colors.transparent,
       activeBackgroundColor: tokens.colors.surface,
       contentColor: tokens.colors.contentMedium,
@@ -15,7 +15,7 @@ final _lightChip = ThemeMutable(
 final _darkChip = ThemeMutable(
   (Tokens tokens) => ChipTheme(
     style: ChipStyle(
-      activeBorderColor: tokens.colors.main,
+      activeColor: tokens.colors.main,
       backgroundColor: Colors.transparent,
       activeBackgroundColor: tokens.colors.surface,
       contentColor: tokens.colors.contentMedium,

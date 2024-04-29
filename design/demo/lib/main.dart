@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:design/defaults/defaults.dart';
 import 'package:grid_pad/grid_pad.dart';
 import 'package:grid_pad/grid_pad_cells.dart';
 import 'package:grid_pad/grid_pad_widget.dart';
@@ -143,7 +144,10 @@ class _ThemeCustomize extends StatelessWidget {
                         context,
                         (current) => current.mutate(
                           current.tokens.copyWith(
-                            colors: current.tokens.colors.copyWith(main: color),
+                            colors: current.tokens.colors.copyWith(
+                                main: color,
+                                mainContent: color == Colors.white ? Defaults.darkTokens.colors.mainContent : Colors.white,
+                                mainHoverContent: color == Colors.white ? Defaults.darkTokens.colors.mainHoverContent : Colors.white),
                           ),
                         ),
                       ),

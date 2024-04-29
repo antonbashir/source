@@ -147,7 +147,7 @@ class _ChipState extends State<Chip> with SingleTickerProviderStateMixin {
     final effectiveBorderWidth = widget.borderWidth ?? effectiveChipConfiguration.borderWidth;
     final effectiveHeight = widget.height ?? effectiveChipConfiguration.height;
     final effectiveGap = widget.gap ?? effectiveChipConfiguration.gap;
-    final effectiveActiveColor = widget.activeBorderColor ?? context.theme.chipTheme().style.activeBorderColor;
+    final effectiveActiveColor = widget.activeBorderColor ?? context.theme.chipTheme().style.activeColor;
     final effectiveBackgroundColor = widget.backgroundColor ?? context.theme.chipTheme().style.backgroundColor;
     final effectiveActiveBackgroundColor = widget.activeBackgroundColor ?? context.theme.chipTheme().style.activeBackgroundColor;
     final effectiveTextColor = widget.textColor ?? context.theme.chipTheme().style.contentColor;
