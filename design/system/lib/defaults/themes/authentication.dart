@@ -3,7 +3,7 @@ part of '../defaults.dart';
 final _lightAuthentication = ThemeMutable(
   (Tokens tokens) => AuthenticationCodeTheme(
     style: AuthenticationCodeStyle(
-      selectedBorderColor: tokens.colors.main,
+      selectedBorderColor: tokens.colors.focus,
       activeBorderColor: tokens.colors.border,
       inactiveBorderColor: tokens.colors.border,
       errorBorderColor: tokens.colors.error,
@@ -24,7 +24,7 @@ final _lightAuthentication = ThemeMutable(
 final _darkAuthentication = ThemeMutable(
   (Tokens tokens) => AuthenticationCodeTheme(
     style: AuthenticationCodeStyle(
-      selectedBorderColor: tokens.colors.main,
+      selectedBorderColor: tokens.colors.focus,
       activeBorderColor: tokens.colors.border,
       inactiveBorderColor: tokens.colors.border,
       errorBorderColor: tokens.colors.error,
