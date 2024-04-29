@@ -262,7 +262,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
 
   MaxLengthEnforcement get _effectiveMaxLengthEnforcement => widget.maxLengthEnforcement ?? LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(defaultTargetPlatform);
 
-  Set<VisualState> get _materialState => <VisualState>{
+  Set<VisualState> get _states => <VisualState>{
         if (!_isEnabled) VisualState.disabled,
         if (_isHovering) VisualState.hovered,
         if (_hasFocus) VisualState.focused,
@@ -537,7 +537,7 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
 
     final MouseCursor effectiveMouseCursor = VisualStateProperty.resolveAs<MouseCursor>(
       widget.mouseCursor ?? VisualStateMouseCursor.textable,
-      _materialState,
+      _states,
     );
 
     final List<TextInputFormatter> formatters = <TextInputFormatter>[
