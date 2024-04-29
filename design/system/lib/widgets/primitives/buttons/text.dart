@@ -49,7 +49,7 @@ class TextButton extends StatelessWidget {
     final effectiveTextColor = context.theme.buttonTheme().style.selectColors(ButtonVariant.text).content;
     final effectiveHoverTextColor = context.theme.buttonTheme().style.selectColors(ButtonVariant.text).hoverContent;
     final effectiveHoverColor = context.theme.buttonTheme().style.selectColors(ButtonVariant.text).hover;
-    final effectiveFocusColor = context.theme.buttonTheme().style.selectColors(ButtonVariant.text).focus.withOpacity(context.isDarkMode ? 0.8 : 0.2);
+    final effectiveFocusColor = context.theme.buttonTheme().style.selectColors(ButtonVariant.text).focus;
     return Button(
       autofocus: autofocus,
       isFocusable: isFocusable,

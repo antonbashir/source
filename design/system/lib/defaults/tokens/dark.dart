@@ -71,6 +71,7 @@ final _darkTokens = Tokens(
     layer: const Color(0xff1a1c1e),
     border: _neutral.shade700,
     hover: const Color(0xff36383c),
+    focus: _neutral.shade600,
     active: const Color(0xff36383c),
     contentWeak: _gray.shade400,
     contentWeakHover: _gray.shade200,

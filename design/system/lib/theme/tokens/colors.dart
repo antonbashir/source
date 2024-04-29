@@ -54,6 +54,7 @@ class Colors implements ThemeComponent<Colors> {
   final Color active;
   final Color hover;
   final Color scroll;
+  final Color focus;
 
   final Color neutral;
   final Color neutralContent;
@@ -91,6 +92,7 @@ class Colors implements ThemeComponent<Colors> {
     required this.layer,
     required this.active,
     required this.hover,
+    required this.focus,
     required this.surface,
     required this.background,
     required this.border,
@@ -139,6 +141,7 @@ class Colors implements ThemeComponent<Colors> {
     Color? active,
     Color? hover,
     Color? scroll,
+    Color? focus,
     Color? neutral,
     Color? neutralContent,
     Color? information,
@@ -179,6 +182,7 @@ class Colors implements ThemeComponent<Colors> {
         overlay: overlay ?? this.overlay,
         active: active ?? this.active,
         hover: hover ?? this.hover,
+        focus: focus ?? this.focus,
         scroll: scroll ?? this.scroll,
         neutral: neutral ?? this.neutral,
         neutralContent: neutralContent ?? this.neutralContent,
@@ -224,6 +228,7 @@ class Colors implements ThemeComponent<Colors> {
       overlay: Color.lerp(overlay, other.overlay, t)!,
       active: Color.lerp(active, other.active, t)!,
       hover: Color.lerp(hover, other.hover, t)!,
+      focus: Color.lerp(focus, other.focus, t)!,
       scroll: Color.lerp(scroll, other.scroll, t)!,
       neutral: Color.lerp(neutral, other.neutral, t)!,
       neutralContent: Color.lerp(neutralContent, other.neutralContent, t)!,

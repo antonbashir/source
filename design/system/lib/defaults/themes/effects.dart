@@ -3,8 +3,8 @@ part of '../defaults.dart';
 final _lightEffects = ThemeMutable(
   (Tokens tokens) => EffectsTheme(
     focus: FocusEffectStyle(
-      color: tokens.colors.mainContent.withOpacity(0.25),
-      extent: 4,
+      color: tokens.colors.focus,
+      extent: 2,
       duration: _transitions.transitionDuration,
       curve: _transitions.transitionCurve,
     ),
@@ -33,8 +33,8 @@ final _lightEffects = ThemeMutable(
 final _darkEffects = ThemeMutable(
   (Tokens tokens) => EffectsTheme(
     focus: FocusEffectStyle(
-      color: tokens.colors.main.withOpacity(0.25),
-      extent: 1,
+      color: tokens.colors.focus,
+      extent: 2,
       duration: _transitions.transitionDuration,
       curve: _transitions.transitionCurve,
     ),

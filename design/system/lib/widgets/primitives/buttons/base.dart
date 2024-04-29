@@ -247,7 +247,7 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
       onTap: widget.onTap,
       onLongPress: widget.onLongPress,
       builder: (context, isEnabled, isHovered, isFocused, isPressed) {
-        final canAnimate = _isEnabled && (isHovered || isFocused || isPressed);
+        final canAnimate = _isEnabled && (isHovered || isPressed);
         _handleHoverEffect(canAnimate);
         return AnimatedBuilder(
           animation: _animationController!,

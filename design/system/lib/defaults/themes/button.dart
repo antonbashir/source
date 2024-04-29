@@ -10,7 +10,7 @@ final _lightButton = ThemeMutable(
         background: Colors.transparent,
         hover: tokens.colors.hover,
         hoverContent: tokens.colors.contentMedium,
-        focus: tokens.colors.main,
+        focus: tokens.colors.focus,
       ),
       variantColors: {
         ButtonVariant.base: ButtonColors(
@@ -19,7 +19,7 @@ final _lightButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.icon: ButtonColors(
           content: tokens.colors.contentMedium,
@@ -27,15 +27,15 @@ final _lightButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.filled: ButtonColors(
           content: tokens.colors.mainContent,
           border: tokens.colors.border,
           background: tokens.colors.main,
           hover: tokens.colors.mainHover,
-          hoverContent: tokens.colors.mainContent,
-          focus: tokens.colors.main,
+          hoverContent: tokens.colors.mainHoverContent,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.outline: ButtonColors(
           content: tokens.colors.contentMedium,
@@ -43,7 +43,7 @@ final _lightButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.text: ButtonColors(
           content: tokens.colors.contentMedium,
@@ -51,7 +51,7 @@ final _lightButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
       },
     ),
@@ -68,7 +68,7 @@ final _darkButton = ThemeMutable(
         background: Colors.transparent,
         hover: tokens.colors.hover,
         hoverContent: tokens.colors.contentMedium,
-        focus: tokens.colors.main,
+        focus: tokens.colors.focus,
       ),
       variantColors: {
         ButtonVariant.base: ButtonColors(
@@ -77,7 +77,7 @@ final _darkButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.icon: ButtonColors(
           content: tokens.colors.contentMedium,
@@ -85,15 +85,15 @@ final _darkButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.filled: ButtonColors(
           content: tokens.colors.mainContent,
           border: tokens.colors.border,
           background: tokens.colors.main,
           hover: tokens.colors.mainHover,
-          hoverContent: tokens.colors.mainContent,
-          focus: tokens.colors.main,
+          hoverContent: tokens.colors.mainHoverContent,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.outline: ButtonColors(
           content: tokens.colors.contentMedium,
@@ -101,7 +101,7 @@ final _darkButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
         ButtonVariant.text: ButtonColors(
           content: tokens.colors.contentMedium,
@@ -109,7 +109,7 @@ final _darkButton = ThemeMutable(
           background: Colors.transparent,
           hover: tokens.colors.hover,
           hoverContent: tokens.colors.contentMedium,
-          focus: tokens.colors.main,
+          focus: tokens.colors.focus,
         ),
       },
     ),
