@@ -1,10 +1,10 @@
 part of '../defaults.dart';
 
 final _scrollbarConfiguration = ScrollbarConfiguration(
-  thickness: const VisualStatePropertyAll(8),
-  thicknessWithTrack: const VisualStatePropertyAll(8),
+  thickness: const VisualStatePropertyAll(10),
+  thicknessWithTrack: const VisualStatePropertyAll(10),
   radius: _radiuses.medium,
   crossAxisMargin: 4,
   mainAxisMargin: 4,
-  minThumbLength: 48,
+  minThumbLength: 18,
 );
