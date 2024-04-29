@@ -80,7 +80,7 @@ class _VisualEnabledAndDisabledMouseCursor extends VisualStateMouseCursor {
   }
 
   @override
-  String get debugDescription => 'MaterialStateMouseCursor($name)';
+  String get debugDescription => name;
 }
 
 abstract class VisualStateBorderSide extends BorderSide implements VisualStateProperty<BorderSide?> {
