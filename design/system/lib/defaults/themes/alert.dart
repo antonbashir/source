@@ -4,7 +4,7 @@ final _lightAlert = ThemeMutable(
   (Tokens tokens) => AlertTheme(
     style: AlertStyle(
       backgroundColor: tokens.colors.neutral,
-      borderColor: tokens.colors.border,
+      borderColor: Colors.transparent,
       iconColor: tokens.colors.neutralContent,
       textColor: tokens.colors.neutralContent,
       transitionDuration: _transitions.transitionDuration,
@@ -18,7 +18,7 @@ final _darkAlert = ThemeMutable(
   (Tokens tokens) => AlertTheme(
     style: AlertStyle(
       backgroundColor: tokens.colors.neutral,
-      borderColor: tokens.colors.border,
+      borderColor: Colors.transparent,
       iconColor: tokens.colors.neutralContent,
       textColor: tokens.colors.neutralContent,
       transitionDuration: _transitions.transitionDuration,

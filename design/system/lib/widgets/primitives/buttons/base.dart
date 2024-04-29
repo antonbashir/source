@@ -225,7 +225,7 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
       showFocusEffect: widget.showFocusEffect,
       showPulseEffect: widget.showPulseEffect,
       showPulseEffectJiggle: widget.showPulseEffectJiggle,
-      showUpscaleEffect: widget.showScaleEffect,
+      showUpscaleEffect: false,
       showDownscaleEffect: widget.showScaleEffect,
       borderRadius: effectiveBorderRadius,
       backgroundColor: effectiveBackgroundColor,

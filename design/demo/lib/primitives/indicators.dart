@@ -14,16 +14,13 @@ class _IndicatorsState extends State<_Indicators> {
   Widget build(BuildContext context) => DecoratedBox(
         decoration: ShapeDecoration(shape: SquircleBorder(borderRadius: context.borders.medium.squircle(context), side: BorderSide(color: context.colors.border))),
         child: Padding(
-          padding: EdgeInsets.all(context.spacings.small),
+          padding: EdgeInsets.all(context.spacings.medium),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(context.spacings.small),
-                    child: Text("Indicators", style: context.typography.base.titleLarge),
-                  ),
+                  Text("Indicators", style: context.typography.base.titleLarge),
                   const Spacer(),
                   Row(
                     children: [

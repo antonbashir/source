@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:grid_pad/grid_pad_cells.dart';
+import 'package:grid_pad/grid_pad_widget.dart';
 import 'package:source_demo/composites.dart';
 import 'package:source_demo/layouts.dart';
 import 'package:source_demo/primitives.dart';
@@ -100,9 +102,8 @@ class _ThemeCustomize extends StatelessWidget {
   Widget build(BuildContext context) => Expanded(
         child: Padding(
           padding: EdgeInsets.all(context.spacings.small),
-          child: GridView.count(
-            crossAxisCount: 3,
-            childAspectRatio: 3 / 2,
+          child: GridPad(
+            gridPadCells: GridPadCells.gridSize(rowCount: 5, columnCount: 3),
             children: [
               Colors.white,
               Colors.black,

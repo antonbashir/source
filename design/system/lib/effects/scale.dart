@@ -1,5 +1,11 @@
 import 'package:flutter/widgets.dart';
 
+class ScaleDownNotifier with ChangeNotifier {
+  void scaleDown() {
+    notifyListeners();
+  }
+}
+
 class ScaleEffect extends StatefulWidget {
   final Widget child;
   final double downscaleBound;
@@ -7,7 +13,7 @@ class ScaleEffect extends StatefulWidget {
   final Duration duration;
   final Curve curve;
   final bool scaleUp;
-  final bool scaleDown;
+  final ScaleDownNotifier? scaleDown;
 
   const ScaleEffect({
     super.key,
@@ -16,7 +22,7 @@ class ScaleEffect extends StatefulWidget {
     required this.upscaleBound,
     this.downscaleBound = 0,
     this.scaleUp = false,
-    this.scaleDown = false,
+    this.scaleDown,
     required this.child,
   });
 
@@ -36,39 +42,40 @@ class _ScaleEffectState extends State<ScaleEffect> with TickerProviderStateMixin
     _upscaleController = AnimationController(
       vsync: this,
       duration: widget.duration,
+      reverseDuration: widget.duration,
       lowerBound: 0,
       upperBound: widget.upscaleBound,
     )..addListener(() => setState(() {}));
     _downscaleController = AnimationController(
       vsync: this,
+      reverseDuration: widget.duration,
       duration: widget.duration,
       lowerBound: 0,
       upperBound: widget.downscaleBound,
-    )..addListener(() => setState(() {}));
-    _upscale = CurvedAnimation(parent: _upscaleController, curve: widget.curve);
-    _downscale = CurvedAnimation(parent: _downscaleController, curve: widget.curve);
+    )
+      ..addListener(() => setState(() {}))
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) _downscaleController.reverse();
+      });
+    _upscale = CurvedAnimation(parent: _upscaleController, curve: widget.curve, reverseCurve: widget.curve);
+    _downscale = CurvedAnimation(parent: _downscaleController, curve: widget.curve, reverseCurve: widget.curve);
+    widget.scaleDown?.addListener(() {
+      _upscaleController.reverse();
+      _downscaleController.forward();
+    });
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant ScaleEffect oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.scaleDown != widget.scaleDown) {
-      if (widget.scaleDown) {
-        _upscaleController.reverse();
-        _downscaleController.forward();
-        return;
-      }
-      _downscaleController.reverse();
-      return;
-    }
     if (oldWidget.scaleUp != widget.scaleUp) {
       if (widget.scaleUp) {
         _upscaleController.forward();
+        _downscaleController.reverse();
         return;
       }
       _upscaleController.reverse();
-      _downscaleController.reverse();
     }
   }
 
@@ -77,21 +84,16 @@ class _ScaleEffectState extends State<ScaleEffect> with TickerProviderStateMixin
     super.dispose();
     _upscaleController.dispose();
     _downscaleController.dispose();
+    widget.scaleDown?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    _scale = widget.scaleDown
+    _scale = (_downscaleController.isAnimating || _downscaleController.isCompleted)
         ? 1 - _downscale.value
-        : widget.scaleUp
-            ? _downscaleController.isAnimating
-                ? 1 - _downscale.value
-                : 1 + _upscale.value
-            : _downscaleController.isAnimating
-                ? 1 - _downscale.value
-                : _upscaleController.isAnimating
-                    ? 1 + _upscale.value
-                    : 1;
+        : (_upscaleController.isAnimating || _upscaleController.isCompleted)
+            ? 1 + _upscale.value
+            : 1;
     return Transform.scale(
       scale: _scale,
       child: widget.child,

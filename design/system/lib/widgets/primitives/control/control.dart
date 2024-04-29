@@ -95,6 +95,7 @@ class BaseControl extends StatefulWidget {
 
 class _BaseControlState extends State<BaseControl> {
   late Map<Type, Action<Intent>> _actions;
+  late final ScaleDownNotifier _scaleDown = ScaleDownNotifier();
 
   FocusNode? _focusNode;
 
@@ -106,7 +107,6 @@ class _BaseControlState extends State<BaseControl> {
   bool get _isEnabled => widget.onTap != null || widget.onLongPress != null;
   bool get _canAnimateFocus => widget.showFocusEffect && _isEnabled && _isFocused;
   bool get _canAnimatePulse => widget.showPulseEffect && _isEnabled;
-  bool get _canAnimateDownscale => widget.showDownscaleEffect && _isEnabled && (_isPressed || _isLongPressed);
   bool get _canAnimateUpscale => widget.showUpscaleEffect && _isEnabled && _isHovered;
   MouseCursor get _cursor => _isEnabled ? widget.cursor : SystemMouseCursors.basic;
   FocusNode get _effectiveFocusNode => widget.focusNode ?? (_focusNode ??= FocusNode(skipTraversal: !widget.isFocusable));
@@ -136,6 +136,7 @@ class _BaseControlState extends State<BaseControl> {
 
   void _handleTap() {
     if (_isEnabled) {
+      if (widget.showDownscaleEffect) _scaleDown.scaleDown();
       setState(() => _isPressed = true);
       widget.onTap?.call();
       setState(() => _isPressed = false);
@@ -291,7 +292,7 @@ class _BaseControlState extends State<BaseControl> {
                   child: RepaintBoundary(
                     child: ScaleEffect(
                       scaleUp: _canAnimateUpscale,
-                      scaleDown: _canAnimateDownscale,
+                      scaleDown: _scaleDown,
                       upscaleBound: effectiveScaleEffectUpscale,
                       downscaleBound: effectiveScaleEffectDownscale,
                       duration: effectiveScaleEffectDuration,

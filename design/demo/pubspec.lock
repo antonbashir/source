@@ -132,6 +132,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  grid_pad:
+    dependency: "direct main"
+    description:
+      name: grid_pad
+      sha256: cb32570f6397f2ccff164993dfcc08055d85b8ac2b4b331ed5bc5744e7e79874
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   highlight:
     dependency: transitive
     description:
