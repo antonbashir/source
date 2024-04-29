@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:design/borders/squircle/border.dart';
 import 'package:design/common/common.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/logging/logging.dart';
@@ -229,13 +228,10 @@ class _DynamicListViewState<T> extends State<DynamicListView<T>> {
                       widget.pageSize,
                       (_) => Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: context.spacings.tiny, horizontal: context.spacings.small),
+                          padding: EdgeInsets.symmetric(vertical: context.spacings.small, horizontal: context.spacings.small),
                           child: Container(
                             height: double.infinity,
-                            decoration: ShapeDecoration(
-                              color: Colors.white,
-                              shape: SquircleBorder(borderRadius: context.borders.tiny.squircle(context)),
-                            ),
+                            color: Colors.white,
                           ),
                         ),
                       ),

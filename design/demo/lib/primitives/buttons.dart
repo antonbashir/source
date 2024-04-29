@@ -47,6 +47,12 @@ class _ButtonsState extends State<_Buttons> {
                           showPulseEffect: _pulse,
                           size: BreakpointSize.tiny,
                           label: const Text("Press me"),
+                        ),
+                        SizedBox(width: context.spacings.small),
+                        FilledButton(
+                          showPulseEffect: _pulse,
+                          size: BreakpointSize.tiny,
+                          label: const Text("Press me"),
                           onTap: () {},
                         ),
                         SizedBox(width: context.spacings.small),
@@ -88,6 +94,12 @@ class _ButtonsState extends State<_Buttons> {
                           showPulseEffect: _pulse,
                           buttonSize: BreakpointSize.tiny,
                           label: const Text("Press me"),
+                        ),
+                        SizedBox(width: context.spacings.small),
+                        OutlinedButton(
+                          showPulseEffect: _pulse,
+                          buttonSize: BreakpointSize.tiny,
+                          label: const Text("Press me"),
                           onTap: () {},
                         ),
                         SizedBox(width: context.spacings.small),
@@ -125,6 +137,12 @@ class _ButtonsState extends State<_Buttons> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
+                        TextButton(
+                          showPulseEffect: _pulse,
+                          buttonSize: BreakpointSize.tiny,
+                          label: const Text("Press me"),
+                        ),
+                        SizedBox(width: context.spacings.small),
                         TextButton(
                           showPulseEffect: _pulse,
                           buttonSize: BreakpointSize.tiny,
