@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:grid_pad/grid_pad.dart';
 import 'package:grid_pad/grid_pad_cells.dart';
 import 'package:grid_pad/grid_pad_widget.dart';
 import 'package:source_demo/composites.dart';
@@ -100,44 +101,43 @@ class _ThemeCustomize extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Expanded(
-        child: Padding(
-          padding: EdgeInsets.all(context.spacings.small),
-          child: GridPad(
-            gridPadCells: GridPadCells.gridSize(rowCount: 5, columnCount: 3),
-            children: [
-              Colors.white,
-              Colors.black,
-              context.palette.slate.shade400,
-              context.palette.gray.shade400,
-              context.palette.zinc.shade400,
-              context.palette.neutral.shade400,
-              context.palette.stone.shade400,
-              context.palette.red.shade400,
-              context.palette.orange.shade400,
-              context.palette.amber.shade400,
-              context.palette.yellow.shade400,
-              context.palette.lime.shade400,
-              context.palette.green.shade400,
-              context.palette.emerald.shade400,
-              context.palette.teal.shade400,
-              context.palette.cyan.shade400,
-              context.palette.sky.shade400,
-              context.palette.blue.shade400,
-              context.palette.indigo.shade400,
-              context.palette.violet.shade400,
-              context.palette.purple.shade400,
-              context.palette.fuchsia.shade400,
-              context.palette.pink.shade400,
-              context.palette.rose.shade400,
-            ]
-                .map(
-                  (color) => Padding(
+        child: GridPad(
+          gridPadCells: GridPadCellsBuilder(rowCount: 5, columnCount: 3).build(),
+          children: [
+            Colors.white,
+            Colors.black,
+            context.palette.slate.shade400,
+            context.palette.gray.shade400,
+            context.palette.zinc.shade400,
+            context.palette.neutral.shade400,
+            context.palette.stone.shade400,
+            context.palette.red.shade400,
+            context.palette.orange.shade400,
+            context.palette.amber.shade400,
+            context.palette.yellow.shade400,
+            context.palette.lime.shade400,
+            context.palette.green.shade400,
+            context.palette.emerald.shade400,
+            context.palette.teal.shade400,
+            context.palette.cyan.shade400,
+            context.palette.sky.shade400,
+            context.palette.blue.shade400,
+            context.palette.indigo.shade400,
+            context.palette.violet.shade400,
+            context.palette.purple.shade400,
+            context.palette.fuchsia.shade400,
+            context.palette.pink.shade400,
+            context.palette.rose.shade400,
+          ]
+              .map(
+                (color) => Center(
+                  child: Padding(
                     padding: EdgeInsets.all(context.spacings.small),
                     child: Radio(
                       activeColor: color,
                       selected: context.colors.main == color,
                       toggleable: false,
-                      size: BreakpointSize.tiny,
+                      size: BreakpointSize.small,
                       inactiveColor: color,
                       onChanged: (_) => Configurator.overrideTheme(
                         context,
@@ -149,9 +149,9 @@ class _ThemeCustomize extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
-                .toList(),
-          ),
+                ),
+              )
+              .toList(),
         ),
       );
 }
