@@ -150,7 +150,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
 
   Color _connectorColor(bool isActive) {
     final Set<VisualState> states = <VisualState>{
-      if (isActive) VisualState.selected else VisualState.disabled,
+      if (isActive) VisualState.active else VisualState.disabled,
     };
     if (widget.connectorColor?.resolve(states) case final resolvedConnectorColor?) return resolvedConnectorColor;
     return isActive ? context.colors.main : context.palette.gray.shade400;
@@ -193,7 +193,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
   Color _circleColor(int index) {
     final bool isActive = widget.steps[index].isActive;
     final Set<VisualState> states = <VisualState>{
-      if (isActive) VisualState.selected else VisualState.disabled,
+      if (isActive) VisualState.active else VisualState.disabled,
     };
     final Color? resolvedConnectorColor = widget.connectorColor?.resolve(states);
     if (resolvedConnectorColor != null) {

@@ -66,7 +66,7 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
 
   BorderSide? _resolveSide(BorderSide? side) {
     if (side is VisualStateBorderSide) return VisualStateProperty.resolveAs<BorderSide?>(side, states);
-    if (!states.contains(VisualState.selected)) return side;
+    if (!states.contains(VisualState.active)) return side;
     return null;
   }
 

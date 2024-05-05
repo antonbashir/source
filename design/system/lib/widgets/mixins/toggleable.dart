@@ -164,7 +164,7 @@ mixin ToggleableStateMixin<S extends StatefulWidget> on TickerProviderStateMixin
         if (!isInteractive) VisualState.disabled,
         if (_hovering) VisualState.hovered,
         if (_focused) VisualState.focused,
-        if (selected ?? true) VisualState.selected,
+        if (selected ?? true) VisualState.active,
       };
 
   Widget buildToggleable({

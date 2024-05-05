@@ -9,8 +9,7 @@ enum VisualState {
   focused,
   pressed,
   dragged,
-  selected,
-  scrolledUnder,
+  active,
   disabled,
   error,
 }
