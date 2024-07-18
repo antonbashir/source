@@ -1,4 +1,4 @@
-import 'package:design/constants/web.dart';
+import 'package:design/constants/platform.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
