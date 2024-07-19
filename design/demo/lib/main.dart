@@ -1,16 +1,14 @@
 import 'dart:ui';
 
+import 'package:creator/creator.dart';
 import 'package:design/defaults/defaults.dart';
+import 'package:design/design.dart';
+import 'package:flutter/widgets.dart';
 import 'package:grid_pad/grid_pad.dart';
-import 'package:grid_pad/grid_pad_cells.dart';
-import 'package:grid_pad/grid_pad_widget.dart';
 import 'package:source_demo/composites.dart';
 import 'package:source_demo/layouts.dart';
 import 'package:source_demo/primitives.dart';
 import 'package:source_demo/views.dart';
-import 'package:creator/creator.dart';
-import 'package:design/design.dart';
-import 'package:flutter/widgets.dart';
 
 void main() => Configurator.navigable(
       wrapper: (configurator) => CreatorGraph(
