@@ -81,10 +81,10 @@ class _ScaleEffectState extends State<ScaleEffect> with TickerProviderStateMixin
 
   @override
   void dispose() {
-    super.dispose();
     _upscaleController.dispose();
     _downscaleController.dispose();
     widget.scaleDown?.dispose();
+    super.dispose();
   }
 
   @override
