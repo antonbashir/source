@@ -1,4 +1,4 @@
-## Source
+# Source
 
 [Source](https://antonbashir.github.io/source/) - is a design system and framework based on different great open-source projects.
 
@@ -10,8 +10,7 @@ The Source has three main features:
 
 ## Why
 
-I am currently working on [Feng-Shui](https://github.com/antonbashir/feng-shui) - My own Dart-C framework.
-Feng-Shui is the core for my future large project "Evolution". And Source will be a design system in there.
+The main goal is to create an all-in-one solution for Dart world: frontend, backend and platform.
 
 ## Status
 
