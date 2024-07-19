@@ -1,4 +1,3 @@
-import 'package:design/painters/toggleable/toggleable.dart';
 import 'package:flutter/widgets.dart';
 
 class RadioPainter extends ToggleablePainter {

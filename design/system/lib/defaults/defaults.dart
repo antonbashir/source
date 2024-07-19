@@ -8,7 +8,6 @@ import 'package:design/constants/locales.dart';
 import 'package:design/constants/toast.dart';
 import 'package:design/extensions/extensions.dart';
 import 'package:design/model/breakpoints.dart';
-import 'package:design/model/state.dart';
 import 'package:design/model/theme.dart';
 import 'package:design/theme/composites/accordion/configuration.dart';
 import 'package:design/theme/composites/accordion/style.dart';

@@ -1,12 +1,11 @@
 import 'dart:ui';
 
-import 'package:design/model/state.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class ScrollbarConfiguration {
-  final VisualStateProperty<double?> thickness;
-  final VisualStateProperty<double?> thicknessWithTrack;
+  final WidgetStateProperty<double?> thickness;
+  final WidgetStateProperty<double?> thicknessWithTrack;
   final Radius radius;
   final double crossAxisMargin;
   final double mainAxisMargin;
@@ -22,8 +21,8 @@ class ScrollbarConfiguration {
   });
 
   ScrollbarConfiguration copyWith({
-    VisualStateProperty<double?>? thickness,
-    VisualStateProperty<double?>? thicknessWithTrack,
+    WidgetStateProperty<double?>? thickness,
+    WidgetStateProperty<double?>? thicknessWithTrack,
     Radius? radius,
     double? crossAxisMargin,
     double? mainAxisMargin,
@@ -42,8 +41,8 @@ class ScrollbarConfiguration {
   ScrollbarConfiguration lerp(ScrollbarConfiguration? other, double t) {
     if (other is! ScrollbarConfiguration) return this;
     return ScrollbarConfiguration(
-      thickness: VisualStateProperty.lerp<double?>(thickness, other.thickness, t, lerpDouble)!,
-      thicknessWithTrack: VisualStateProperty.lerp<double?>(thicknessWithTrack, other.thicknessWithTrack, t, lerpDouble)!,
+      thickness: WidgetStateProperty.lerp<double?>(thickness, other.thickness, t, lerpDouble)!,
+      thicknessWithTrack: WidgetStateProperty.lerp<double?>(thicknessWithTrack, other.thicknessWithTrack, t, lerpDouble)!,
       radius: Radius.lerp(radius, other.radius, t)!,
       crossAxisMargin: lerpDouble(crossAxisMargin, other.crossAxisMargin, t)!,
       mainAxisMargin: lerpDouble(mainAxisMargin, other.mainAxisMargin, t)!,

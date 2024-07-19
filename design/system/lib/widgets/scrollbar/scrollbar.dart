@@ -1,5 +1,4 @@
 import 'package:design/extensions/extensions.dart';
-import 'package:design/model/state.dart';
 import 'package:design/theme/layouts/scrollbar/theme.dart';
 import 'package:design/theme/theme.dart';
 import 'package:design/theme/tokens/colors.dart';
@@ -111,15 +110,15 @@ class _ScrollbarState extends RawScrollbarState<_Scrollbar> {
   @override
   bool get enableGestures => widget.interactive ?? _scrollbarTheme.style.interactive;
 
-  VisualStateProperty<bool> get _trackVisibility =>
-      VisualStateProperty.resolveWith((Set<VisualState> states) => widget.trackVisibility ?? _scrollbarTheme.style.trackVisibility.resolve(states) ?? false);
+  WidgetStateProperty<bool> get _trackVisibility =>
+      WidgetStateProperty.resolveWith((Set<WidgetState> states) => widget.trackVisibility ?? _scrollbarTheme.style.trackVisibility.resolve(states) ?? false);
 
-  Set<VisualState> get _states => <VisualState>{
-        if (_dragIsActive) VisualState.dragged,
-        if (_hoverIsActive) VisualState.hovered,
+  Set<WidgetState> get _states => <WidgetState>{
+        if (_dragIsActive) WidgetState.dragged,
+        if (_hoverIsActive) WidgetState.hovered,
       };
 
-  VisualStateProperty<Color> get _thumbColor {
+  WidgetStateProperty<Color> get _thumbColor {
     final Color onSurface = _tokens.colors.contentMedium;
     final Brightness brightness = _theme.brightness;
     late Color dragColor;
@@ -137,8 +136,8 @@ class _ScrollbarState extends RawScrollbarState<_Scrollbar> {
         idleColor = _useAndroidScrollbar ? _tokens.colors.active.withOpacity(1.0) : onSurface.withOpacity(0.3);
     }
 
-    return VisualStateProperty.resolveWith((Set<VisualState> states) {
-      if (states.contains(VisualState.dragged)) {
+    return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+      if (states.contains(WidgetState.dragged)) {
         return _scrollbarTheme.style.thumbColor.resolve(states) ?? dragColor;
       }
 
@@ -154,10 +153,10 @@ class _ScrollbarState extends RawScrollbarState<_Scrollbar> {
     });
   }
 
-  VisualStateProperty<Color> get _trackColor {
+  WidgetStateProperty<Color> get _trackColor {
     final Color onSurface = _tokens.colors.contentMedium;
     final Brightness brightness = _theme.brightness;
-    return VisualStateProperty.resolveWith((Set<VisualState> states) {
+    return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
       if (showScrollbar && _trackVisibility.resolve(states)) {
         return _scrollbarTheme.style.trackColor.resolve(states) ?? (brightness == Brightness.light ? onSurface.withOpacity(0.03) : onSurface.withOpacity(0.05));
       }
@@ -165,10 +164,10 @@ class _ScrollbarState extends RawScrollbarState<_Scrollbar> {
     });
   }
 
-  VisualStateProperty<Color> get _trackBorderColor {
+  WidgetStateProperty<Color> get _trackBorderColor {
     final Color onSurface = _tokens.colors.contentMedium;
     final Brightness brightness = _theme.brightness;
-    return VisualStateProperty.resolveWith((Set<VisualState> states) {
+    return WidgetStateProperty.resolveWith((Set<WidgetState> states) {
       if (showScrollbar && _trackVisibility.resolve(states)) {
         return _scrollbarTheme.style.trackBorderColor.resolve(states) ?? (brightness == Brightness.light ? onSurface.withOpacity(0.1) : onSurface.withOpacity(0.25));
       }
@@ -176,8 +175,8 @@ class _ScrollbarState extends RawScrollbarState<_Scrollbar> {
     });
   }
 
-  VisualStateProperty<double> get _thickness => VisualStateProperty.resolveWith((Set<VisualState> states) {
-        if (states.contains(VisualState.hovered) && _trackVisibility.resolve(states)) {
+  WidgetStateProperty<double> get _thickness => WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        if (states.contains(WidgetState.hovered) && _trackVisibility.resolve(states)) {
           return _scrollbarTheme.configuration.thicknessWithTrack.resolve(states)!;
         }
         return widget.thickness ?? _scrollbarTheme.configuration.thickness.resolve(states)!;

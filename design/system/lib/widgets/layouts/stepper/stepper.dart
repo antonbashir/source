@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:design/extensions/extensions.dart';
-import 'package:design/model/state.dart';
 import 'package:design/theme/tokens/colors.dart';
 import 'package:design/widgets/icons/icons.dart';
 import 'package:design/widgets/theme/theme.dart';
@@ -101,7 +100,7 @@ class Stepper extends StatefulWidget {
   final StepperControlsWidgetBuilder controlsBuilder;
   final double? elevation;
   final EdgeInsetsGeometry? margin;
-  final VisualStateProperty<Color>? connectorColor;
+  final WidgetStateProperty<Color>? connectorColor;
   final double? connectorThickness;
   final StepIconBuilder? stepIconBuilder;
 
@@ -149,8 +148,8 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
   }
 
   Color _connectorColor(bool isActive) {
-    final Set<VisualState> states = <VisualState>{
-      if (isActive) VisualState.active else VisualState.disabled,
+    final Set<WidgetState> states = <WidgetState>{
+      if (isActive) WidgetState.selected else WidgetState.disabled,
     };
     if (widget.connectorColor?.resolve(states) case final resolvedConnectorColor?) return resolvedConnectorColor;
     return isActive ? context.colors.main : context.palette.gray.shade400;
@@ -192,8 +191,8 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
 
   Color _circleColor(int index) {
     final bool isActive = widget.steps[index].isActive;
-    final Set<VisualState> states = <VisualState>{
-      if (isActive) VisualState.active else VisualState.disabled,
+    final Set<WidgetState> states = <WidgetState>{
+      if (isActive) WidgetState.selected else WidgetState.disabled,
     };
     final Color? resolvedConnectorColor = widget.connectorColor?.resolve(states);
     if (resolvedConnectorColor != null) {

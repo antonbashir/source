@@ -2,9 +2,7 @@ import 'package:design/borders/squircle/border.dart';
 import 'package:design/constants/borders.dart';
 import 'package:design/effects/focus.dart';
 import 'package:design/extensions/extensions.dart';
-import 'package:design/model/state.dart';
 import 'package:design/painters/checkbox/checkbox.dart';
-import 'package:design/widgets/mixins/toggleable.dart';
 import 'package:design/widgets/paddings/touch.dart';
 import 'package:flutter/widgets.dart';
 import 'package:design/constants/breakpoints.dart';
@@ -62,11 +60,11 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
   bool get tristate => widget.tristate;
 
   @override
-  bool? get selected => widget.value;
+  bool? get value => widget.value;
 
   BorderSide? _resolveSide(BorderSide? side) {
-    if (side is VisualStateBorderSide) return VisualStateProperty.resolveAs<BorderSide?>(side, states);
-    if (!states.contains(VisualState.active)) return side;
+    if (side is WidgetStateBorderSide) return WidgetStateProperty.resolveAs<BorderSide?>(side, states);
+    if (!states.contains(WidgetState.selected)) return side;
     return null;
   }
 
@@ -106,7 +104,7 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
     final effectiveFocusEffectCurve = context.theme.effectsTheme().focus.curve;
     final effectiveFocusEffectExtent = context.theme.effectsTheme().focus.extent;
     final effectiveDisabledOpacityValue = context.tokens.opacities.disabled;
-    final effectiveMouseCursor = VisualStateProperty.resolveWith<MouseCursor>(VisualStateMouseCursor.clickable.resolve);
+    final effectiveMouseCursor = WidgetStateProperty.resolveWith<MouseCursor>(WidgetStateMouseCursor.clickable.resolve);
     return Semantics(
       label: widget.semanticLabel,
       checked: widget.value ?? false,
@@ -118,7 +116,7 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
         ),
         child: RepaintBoundary(
           child: FocusEffect(
-            show: states.contains(VisualState.focused),
+            show: states.contains(WidgetState.focused),
             childBorderRadius: effectiveBorderRadius,
             effectColor: effectiveFocusEffectColor,
             effectCurve: effectiveFocusEffectCurve,
@@ -132,7 +130,7 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
                 ]),
               ),
               child: AnimatedOpacity(
-                opacity: states.contains(VisualState.disabled) ? effectiveDisabledOpacityValue : 1,
+                opacity: states.contains(WidgetState.disabled) ? effectiveDisabledOpacityValue : 1,
                 duration: effectiveFocusEffectDuration,
                 child: buildToggleable(
                   mouseCursor: effectiveMouseCursor,
@@ -144,7 +142,7 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
                     ..activeColor = effectiveActiveColor
                     ..inactiveColor = effectiveInactiveColor
                     ..checkColor = effectiveCheckColor
-                    ..value = selected
+                    ..value = value
                     ..previousValue = _previousValue
                     ..shape = switch (effectiveBorderType) {
                       BorderType.squircle => SquircleBorder(borderRadius: effectiveBorderRadius.squircle(context)),
@@ -159,4 +157,5 @@ class _CheckboxState extends State<Checkbox> with TickerProviderStateMixin, Togg
       ),
     );
   }
+  
 }

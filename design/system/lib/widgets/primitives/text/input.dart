@@ -8,13 +8,11 @@ import 'package:design/constants/constants.dart';
 import 'package:design/constants/restoration.dart';
 import 'package:design/constants/text.dart';
 import 'package:design/extensions/extensions.dart';
-import 'package:design/model/state.dart';
 import 'package:design/widgets/primitives/checks/spell.dart';
 import 'package:design/widgets/views/containers/border.dart';
 import 'package:design/widgets/magnifier/adaptive.dart';
 import 'package:design/widgets/selection/selection.dart';
 import 'package:design/widgets/primitives/text/error.dart';
-import 'package:design/widgets/primitives/text/feedback.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -260,11 +258,11 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
 
   MaxLengthEnforcement get _effectiveMaxLengthEnforcement => widget.maxLengthEnforcement ?? LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement(defaultTargetPlatform);
 
-  Set<VisualState> get _state => <VisualState>{
-        if (!_isEnabled) VisualState.disabled,
-        if (_isHovering) VisualState.hovered,
-        if (_hasFocus) VisualState.focused,
-        if (_hasError) VisualState.error,
+  Set<WidgetState> get _state => <WidgetState>{
+        if (!_isEnabled) WidgetState.disabled,
+        if (_isHovering) WidgetState.hovered,
+        if (_hasFocus) WidgetState.focused,
+        if (_hasError) WidgetState.error,
       };
 
   @override
@@ -533,8 +531,8 @@ class _TextInputState extends State<TextInput> with RestorationMixin implements 
     final Color selectionColor;
     final TextSelectionControls? textSelectionControls = widget.selectionControls;
 
-    final MouseCursor effectiveMouseCursor = VisualStateProperty.resolveAs<MouseCursor>(
-      widget.mouseCursor ?? VisualStateMouseCursor.textable,
+    final MouseCursor effectiveMouseCursor = WidgetStateProperty.resolveAs<MouseCursor>(
+      widget.mouseCursor ?? WidgetStateMouseCursor.textable,
       _state,
     );
 

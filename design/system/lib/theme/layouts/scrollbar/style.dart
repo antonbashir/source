@@ -1,15 +1,14 @@
 import 'package:design/constants/mathematic.dart';
-import 'package:design/model/state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 @immutable
 class ScrollbarStyle {
-  final VisualStateProperty<bool?> thumbVisibility;
-  final VisualStateProperty<bool?> trackVisibility;
-  final VisualStateProperty<Color?> thumbColor;
-  final VisualStateProperty<Color?> trackColor;
-  final VisualStateProperty<Color?> trackBorderColor;
+  final WidgetStateProperty<bool?> thumbVisibility;
+  final WidgetStateProperty<bool?> trackVisibility;
+  final WidgetStateProperty<Color?> thumbColor;
+  final WidgetStateProperty<Color?> trackColor;
+  final WidgetStateProperty<Color?> trackBorderColor;
   final bool interactive;
   final Duration fadeDuration;
   final Duration timeToFade;
@@ -29,11 +28,11 @@ class ScrollbarStyle {
 
   ScrollbarStyle copyWith({
     bool? interactive,
-    VisualStateProperty<bool?>? thumbVisibility,
-    VisualStateProperty<bool?>? trackVisibility,
-    VisualStateProperty<Color?>? thumbColor,
-    VisualStateProperty<Color?>? trackColor,
-    VisualStateProperty<Color?>? trackBorderColor,
+    WidgetStateProperty<bool?>? thumbVisibility,
+    WidgetStateProperty<bool?>? trackVisibility,
+    WidgetStateProperty<Color?>? thumbColor,
+    WidgetStateProperty<Color?>? trackColor,
+    WidgetStateProperty<Color?>? trackBorderColor,
     Duration? fadeDuration,
     Duration? timeToFade,
     Duration? hoverDuration,
@@ -55,14 +54,14 @@ class ScrollbarStyle {
     if (other is! ScrollbarStyle) return this;
     return ScrollbarStyle(
       interactive: lerpBool(interactive, other.interactive, t)!,
-      thumbColor: VisualStateProperty.lerp<Color?>(thumbColor, other.thumbColor, t, Color.lerp)!,
-      trackColor: VisualStateProperty.lerp<Color?>(trackColor, other.trackColor, t, Color.lerp)!,
-      trackBorderColor: VisualStateProperty.lerp<Color?>(trackBorderColor, other.trackBorderColor, t, Color.lerp)!,
+      thumbColor: WidgetStateProperty.lerp<Color?>(thumbColor, other.thumbColor, t, Color.lerp)!,
+      trackColor: WidgetStateProperty.lerp<Color?>(trackColor, other.trackColor, t, Color.lerp)!,
+      trackBorderColor: WidgetStateProperty.lerp<Color?>(trackBorderColor, other.trackBorderColor, t, Color.lerp)!,
       fadeDuration: lerpDuration(fadeDuration, other.fadeDuration, t),
       timeToFade: lerpDuration(timeToFade, other.timeToFade, t),
       hoverDuration: lerpDuration(hoverDuration, other.hoverDuration, t),
-      thumbVisibility: VisualStateProperty.lerp<bool?>(thumbVisibility, other.thumbVisibility, t, lerpBool)!,
-      trackVisibility: VisualStateProperty.lerp<bool?>(trackVisibility, other.trackVisibility, t, lerpBool)!,
+      thumbVisibility: WidgetStateProperty.lerp<bool?>(thumbVisibility, other.thumbVisibility, t, lerpBool)!,
+      trackVisibility: WidgetStateProperty.lerp<bool?>(trackVisibility, other.trackVisibility, t, lerpBool)!,
     );
   }
 }

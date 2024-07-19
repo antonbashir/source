@@ -1,8 +1,6 @@
 import 'package:design/effects/focus.dart';
 import 'package:design/extensions/extensions.dart';
-import 'package:design/model/state.dart';
 import 'package:design/painters/radio/radio.dart';
-import 'package:design/widgets/mixins/toggleable.dart';
 import 'package:design/widgets/paddings/touch.dart';
 import 'package:flutter/widgets.dart';
 import 'package:design/constants/breakpoints.dart';
@@ -74,7 +72,7 @@ class _RadioState<T> extends State<Radio> with TickerProviderStateMixin, Togglea
   bool get tristate => widget.toggleable;
 
   @override
-  bool? get selected => widget._selected;
+  bool? get value => widget._selected;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +86,7 @@ class _RadioState<T> extends State<Radio> with TickerProviderStateMixin, Togglea
     final effectiveFocusEffectDuration = context.theme.effectsTheme().focus.duration;
     final effectiveFocusEffectCurve = context.theme.effectsTheme().focus.curve;
     final effectiveDisabledOpacityValue = context.tokens.opacities.disabled;
-    final effectiveMouseCursor = VisualStateProperty.resolveWith<MouseCursor>(VisualStateMouseCursor.clickable.resolve);
+    final effectiveMouseCursor = WidgetStateProperty.resolveWith<MouseCursor>(WidgetStateMouseCursor.clickable.resolve);
     return Semantics(
       label: widget.semanticLabel,
       inMutuallyExclusiveGroup: true,
@@ -99,7 +97,7 @@ class _RadioState<T> extends State<Radio> with TickerProviderStateMixin, Togglea
           widget.tapAreaSizeValue ?? effectiveConfiguration.tapAreaSizeValue,
         ),
         child: FocusEffect(
-          show: states.contains(VisualState.focused),
+          show: states.contains(WidgetState.focused),
           effectExtent: effectiveFocusEffectExtent,
           childBorderRadius: effectiveBorderRadius,
           effectColor: effectiveFocusEffectColor,
@@ -107,7 +105,7 @@ class _RadioState<T> extends State<Radio> with TickerProviderStateMixin, Togglea
           effectDuration: effectiveFocusEffectDuration,
           child: RepaintBoundary(
             child: AnimatedOpacity(
-              opacity: states.contains(VisualState.disabled) ? effectiveDisabledOpacityValue : 1,
+              opacity: states.contains(WidgetState.disabled) ? effectiveDisabledOpacityValue : 1,
               duration: effectiveFocusEffectDuration,
               child: buildToggleable(
                 focusNode: widget.focusNode,

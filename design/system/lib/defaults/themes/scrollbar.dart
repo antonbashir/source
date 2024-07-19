@@ -3,12 +3,12 @@ part of '../defaults.dart';
 final _lightScrollbar = ThemeMutable(
   (Tokens tokens) => ScrollbarTheme(
     style: ScrollbarStyle(
-      thumbColor: VisualStatePropertyAll(tokens.colors.scroll),
+      thumbColor: WidgetStatePropertyAll(tokens.colors.scroll),
       interactive: true,
-      trackBorderColor: const VisualStatePropertyAll(Colors.transparent),
-      trackColor: VisualStatePropertyAll(tokens.colors.scroll.withOpacity(0.7)),
-      thumbVisibility: VisualStateProperty.all(false),
-      trackVisibility: VisualStateProperty.all(false),
+      trackBorderColor: const WidgetStatePropertyAll(Colors.transparent),
+      trackColor: WidgetStatePropertyAll(tokens.colors.scroll.withOpacity(0.7)),
+      thumbVisibility: WidgetStateProperty.all(false),
+      trackVisibility: WidgetStateProperty.all(false),
       fadeDuration: const Duration(milliseconds: 300),
       timeToFade: const Duration(milliseconds: 600),
       hoverDuration: const Duration(milliseconds: 200),
@@ -20,12 +20,12 @@ final _lightScrollbar = ThemeMutable(
 final _darkScrollbar = ThemeMutable(
   (Tokens tokens) => ScrollbarTheme(
     style: ScrollbarStyle(
-      thumbColor: VisualStatePropertyAll(tokens.colors.scroll),
+      thumbColor: WidgetStatePropertyAll(tokens.colors.scroll),
       interactive: true,
-      trackBorderColor: const VisualStatePropertyAll(Colors.transparent),
-      trackColor: VisualStatePropertyAll(tokens.colors.scroll.withOpacity(0.7)),
-      thumbVisibility: VisualStateProperty.all(false),
-      trackVisibility: VisualStateProperty.all(false),
+      trackBorderColor: const WidgetStatePropertyAll(Colors.transparent),
+      trackColor: WidgetStatePropertyAll(tokens.colors.scroll.withOpacity(0.7)),
+      thumbVisibility: WidgetStateProperty.all(false),
+      trackVisibility: WidgetStateProperty.all(false),
       fadeDuration: const Duration(milliseconds: 300),
       timeToFade: const Duration(milliseconds: 600),
       hoverDuration: const Duration(milliseconds: 200),
