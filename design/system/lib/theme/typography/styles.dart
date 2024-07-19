@@ -110,6 +110,32 @@ class TextStyles {
     );
   }
 
+  TextStyles applyStyles({
+    TextStyle Function(TextStyle style)? display,
+    TextStyle Function(TextStyle style)? headline,
+    TextStyle Function(TextStyle style)? title,
+    TextStyle Function(TextStyle style)? label,
+    TextStyle Function(TextStyle style)? body,
+  }) {
+    return TextStyles(
+      displayLarge: display?.call(this.displayLarge) ?? this.displayLarge,
+      displayMedium: display?.call(this.displayMedium) ?? this.displayMedium,
+      displaySmall: display?.call(this.displaySmall) ?? this.displaySmall,
+      headlineLarge: headline?.call(this.headlineLarge) ?? this.headlineLarge,
+      headlineMedium: headline?.call(this.headlineMedium) ?? this.headlineMedium,
+      headlineSmall: headline?.call(this.headlineSmall) ?? this.headlineSmall,
+      titleLarge: title?.call(this.titleLarge) ?? this.titleLarge,
+      titleMedium: title?.call(this.titleMedium) ?? this.titleMedium,
+      titleSmall: title?.call(this.titleSmall) ?? this.titleSmall,
+      labelLarge: label?.call(this.labelLarge) ?? this.labelLarge,
+      labelMedium: label?.call(this.labelMedium) ?? this.labelMedium,
+      labelSmall: label?.call(this.labelSmall) ?? this.labelSmall,
+      bodyLarge: body?.call(this.bodyLarge) ?? this.bodyLarge,
+      bodyMedium: body?.call(this.bodyMedium) ?? this.bodyMedium,
+      bodySmall: body?.call(this.bodySmall) ?? this.bodySmall,
+    );
+  }
+
   TextStyles applyDisplay({
     double decorationThicknessDelta = 0.0,
     double decorationThicknessFactor = 1.0,

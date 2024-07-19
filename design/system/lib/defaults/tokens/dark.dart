@@ -96,8 +96,23 @@ final _darkTokens = Tokens(
     warningContent: Colors.white,
   ),
   typography: _typography.copyWith(
-    base: _typography.base.applyDisplay(color: Colors.white).applyHeadline(color: Colors.white).applyTitle(color: Colors.white).applyBody(color: _gray.shade200).applyLabel(color: _gray.shade300),
-    dense: _typography.dense.applyDisplay(color: Colors.white).applyHeadline(color: Colors.white).applyTitle(color: Colors.white).applyBody(color: _gray.shade200).applyLabel(color: _gray.shade300),
-    tall: _typography.tall.applyDisplay(color: Colors.white).applyHeadline(color: Colors.white).applyTitle(color: Colors.white).applyBody(color: _gray.shade200).applyLabel(color: _gray.shade300),
+    base: _typography.base.applyStyles(
+        display: (style) => style.apply(color: Colors.white),
+        headline: (style) => style.apply(color: Colors.white),
+        title: (style) => style.apply(color: Colors.white),
+        body: (style) => style.apply(color: _gray.shade200),
+        label: (style) => style.apply(color: _gray.shade300)),
+    dense: _typography.dense.applyStyles(
+        display: (style) => style.apply(color: Colors.white),
+        headline: (style) => style.apply(color: Colors.white),
+        title: (style) => style.apply(color: Colors.white),
+        body: (style) => style.apply(color: _gray.shade200),
+        label: (style) => style.apply(color: _gray.shade300)),
+    tall: _typography.tall.applyStyles(
+        display: (style) => style.apply(color: Colors.white),
+        headline: (style) => style.apply(color: Colors.white),
+        title: (style) => style.apply(color: Colors.white),
+        body: (style) => style.apply(color: Colors.white),
+        label: (style) => style.apply(color: Colors.white)),
   ),
 );
