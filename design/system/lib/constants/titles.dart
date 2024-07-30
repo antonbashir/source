@@ -1,1 +1,0 @@
-const defaultTitle = "Default Interface";
