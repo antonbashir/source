@@ -1,1 +1,0 @@
-const carouselKey = "carousel.key";
