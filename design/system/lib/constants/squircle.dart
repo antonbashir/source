@@ -1,0 +1,1 @@
+const squircleSmoothing = 0.9;
