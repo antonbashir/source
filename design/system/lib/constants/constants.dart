@@ -1,0 +1,12 @@
+const question = '?';
+const empty = '';
+const newLine = '\n';
+const slash = '/';
+const dash = '-';
+const colon = ':';
+const boldDot = "•";
+const indent = "  ";
+const longDash = "⸺";
+const wildcard = "*";
+const comma = ",";
+const threeDots = '...';
