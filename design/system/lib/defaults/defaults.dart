@@ -1,0 +1,288 @@
+import 'dart:ui';
+
+import 'package:design/constants/borders.dart';
+import 'package:design/constants/breakpoints.dart';
+import 'package:design/constants/buttons.dart';
+import 'package:design/constants/editors.dart';
+import 'package:design/constants/locales.dart';
+import 'package:design/constants/toast.dart';
+import 'package:design/extensions/extensions.dart';
+import 'package:design/model/breakpoints.dart';
+import 'package:design/model/theme.dart';
+import 'package:design/theme/composites/accordion/configuration.dart';
+import 'package:design/theme/composites/accordion/style.dart';
+import 'package:design/theme/composites/accordion/theme.dart';
+import 'package:design/theme/composites/alert/configuration.dart';
+import 'package:design/theme/composites/alert/style.dart';
+import 'package:design/theme/composites/alert/theme.dart';
+import 'package:design/theme/composites/authentication/configuration.dart';
+import 'package:design/theme/composites/authentication/style.dart';
+import 'package:design/theme/composites/authentication/theme.dart';
+import 'package:design/theme/composites/code/style.dart';
+import 'package:design/theme/composites/code/theme.dart';
+import 'package:design/theme/layouts/sidebar/sidebar/configuration.dart';
+import 'package:design/theme/layouts/sidebar/sidebar/style.dart';
+import 'package:design/theme/layouts/sidebar/sidebar/theme.dart';
+import 'package:design/theme/primitives/item/configuration.dart';
+import 'package:design/theme/primitives/item/style.dart';
+import 'package:design/theme/primitives/item/theme.dart';
+import 'package:design/theme/composites/toast/configuration.dart';
+import 'package:design/theme/composites/toast/style.dart';
+import 'package:design/theme/composites/toast/theme.dart';
+import 'package:design/theme/effects/pulse.dart';
+import 'package:design/theme/effects/scale.dart';
+import 'package:design/theme/effects/effects.dart';
+import 'package:design/theme/effects/focus.dart';
+import 'package:design/theme/effects/hover.dart';
+import 'package:design/theme/layouts/scrollbar/configuration.dart';
+import 'package:design/theme/layouts/scrollbar/style.dart';
+import 'package:design/theme/layouts/scrollbar/theme.dart';
+import 'package:design/theme/primitives/avatar/configuration.dart';
+import 'package:design/theme/primitives/avatar/style.dart';
+import 'package:design/theme/primitives/avatar/theme.dart';
+import 'package:design/theme/primitives/button/configuration.dart';
+import 'package:design/theme/primitives/button/style.dart';
+import 'package:design/theme/primitives/button/theme.dart';
+import 'package:design/theme/primitives/checkbox/configuration.dart';
+import 'package:design/theme/primitives/checkbox/style.dart';
+import 'package:design/theme/primitives/checkbox/theme.dart';
+import 'package:design/theme/primitives/chip/configuration.dart';
+import 'package:design/theme/primitives/chip/style.dart';
+import 'package:design/theme/primitives/chip/theme.dart';
+import 'package:design/theme/primitives/divider/configuration.dart';
+import 'package:design/theme/primitives/divider/style.dart';
+import 'package:design/theme/primitives/divider/theme.dart';
+import 'package:design/theme/primitives/dots/configuration.dart';
+import 'package:design/theme/primitives/dots/style.dart';
+import 'package:design/theme/primitives/dots/theme.dart';
+import 'package:design/theme/primitives/label/configuration.dart';
+import 'package:design/theme/primitives/label/style.dart';
+import 'package:design/theme/primitives/label/theme.dart';
+import 'package:design/theme/primitives/loaders/circular/configuration.dart';
+import 'package:design/theme/primitives/loaders/circular/style.dart';
+import 'package:design/theme/primitives/loaders/circular/theme.dart';
+import 'package:design/theme/primitives/loaders/linear/configuration.dart';
+import 'package:design/theme/primitives/loaders/linear/style.dart';
+import 'package:design/theme/primitives/loaders/linear/theme.dart';
+import 'package:design/theme/primitives/pins/configuration.dart';
+import 'package:design/theme/primitives/pins/style.dart';
+import 'package:design/theme/primitives/pins/theme.dart';
+import 'package:design/theme/primitives/progress/circular/configuration.dart';
+import 'package:design/theme/primitives/progress/circular/style.dart';
+import 'package:design/theme/primitives/progress/circular/theme.dart';
+import 'package:design/theme/primitives/progress/linear/configuration.dart';
+import 'package:design/theme/primitives/progress/linear/style.dart';
+import 'package:design/theme/primitives/progress/linear/theme.dart';
+import 'package:design/theme/primitives/radio/configuration.dart';
+import 'package:design/theme/primitives/radio/style.dart';
+import 'package:design/theme/primitives/radio/theme.dart';
+import 'package:design/theme/primitives/segments/configuration.dart';
+import 'package:design/theme/primitives/segments/style.dart';
+import 'package:design/theme/primitives/segments/theme.dart';
+import 'package:design/theme/primitives/switch/configuration.dart';
+import 'package:design/theme/primitives/switch/style.dart';
+import 'package:design/theme/primitives/switch/theme.dart';
+import 'package:design/theme/primitives/tag/configuration.dart';
+import 'package:design/theme/primitives/tag/style.dart';
+import 'package:design/theme/primitives/tag/theme.dart';
+import 'package:design/theme/primitives/text/area/configuration.dart';
+import 'package:design/theme/primitives/text/area/style.dart';
+import 'package:design/theme/primitives/text/area/theme.dart';
+import 'package:design/theme/primitives/text/input/configuration.dart';
+import 'package:design/theme/primitives/text/input/style.dart';
+import 'package:design/theme/primitives/text/input/theme.dart';
+import 'package:design/theme/primitives/text/selection/theme.dart';
+import 'package:design/theme/theme.dart';
+import 'package:design/theme/tokens/borders.dart';
+import 'package:design/theme/tokens/colors.dart';
+import 'package:design/theme/tokens/opacities.dart';
+import 'package:design/theme/tokens/palette.dart';
+import 'package:design/theme/tokens/radiuses.dart';
+import 'package:design/theme/tokens/shadows.dart';
+import 'package:design/theme/tokens/spacings.dart';
+import 'package:design/theme/tokens/tokens.dart';
+import 'package:design/theme/tokens/transitions.dart';
+import 'package:design/theme/typography/styles.dart';
+import 'package:design/theme/typography/typography.dart';
+import 'package:design/theme/composites/breadcrumb/configuration.dart';
+import 'package:design/theme/composites/breadcrumb/style.dart';
+import 'package:design/theme/composites/breadcrumb/theme.dart';
+import 'package:design/theme/views/carousel/configuration.dart';
+import 'package:design/theme/views/carousel/style.dart';
+import 'package:design/theme/views/carousel/theme.dart';
+import 'package:design/theme/views/dropdown/configuration.dart';
+import 'package:design/theme/views/dropdown/style.dart';
+import 'package:design/theme/views/dropdown/theme.dart';
+import 'package:design/theme/views/modal/configuration.dart';
+import 'package:design/theme/views/modal/style.dart';
+import 'package:design/theme/views/modal/theme.dart';
+import 'package:design/theme/views/popover/configuration.dart';
+import 'package:design/theme/views/popover/style.dart';
+import 'package:design/theme/views/popover/theme.dart';
+import 'package:design/theme/layouts/sidebar/drawer/configuration.dart';
+import 'package:design/theme/layouts/sidebar/drawer/style.dart';
+import 'package:design/theme/layouts/sidebar/drawer/theme.dart';
+import 'package:design/theme/layouts/tab/configuration.dart';
+import 'package:design/theme/layouts/tab/style.dart';
+import 'package:design/theme/layouts/tab/theme.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_highlight/themes/dracula.dart';
+import 'package:flutter_highlight/themes/idea.dart';
+
+part 'configurations/accordion.dart';
+part 'configurations/alert.dart';
+part 'configurations/authentication.dart';
+part 'configurations/avatar.dart';
+part 'configurations/breadcrumbs.dart';
+part 'configurations/button.dart';
+part 'configurations/carousel.dart';
+part 'configurations/checkbox.dart';
+part 'configurations/chip.dart';
+part 'configurations/divider.dart';
+part 'configurations/drawer.dart';
+part 'configurations/dropdown.dart';
+part 'configurations/indicators.dart';
+part 'configurations/list.dart';
+part 'configurations/loaders.dart';
+part 'configurations/modal.dart';
+part 'configurations/pins.dart';
+part 'configurations/popover.dart';
+part 'configurations/progresses.dart';
+part 'configurations/radio.dart';
+part 'configurations/scrollbar.dart';
+part 'configurations/segments.dart';
+part 'configurations/switch.dart';
+part 'configurations/tabs.dart';
+part 'configurations/tag.dart';
+part 'configurations/text.dart';
+part 'configurations/toast.dart';
+part 'configurations/sidebar.dart';
+part 'configurations/label.dart';
+part 'themes/accordion.dart';
+part 'themes/alert.dart';
+part 'themes/authentication.dart';
+part 'themes/avatar.dart';
+part 'themes/breadcrumbs.dart';
+part 'themes/button.dart';
+part 'themes/carousel.dart';
+part 'themes/checkbox.dart';
+part 'themes/chip.dart';
+part 'themes/code.dart';
+part 'themes/divider.dart';
+part 'themes/drawer.dart';
+part 'themes/dropdown.dart';
+part 'themes/effects.dart';
+part 'themes/indicators.dart';
+part 'themes/list.dart';
+part 'themes/loaders.dart';
+part 'themes/modal.dart';
+part 'themes/pins.dart';
+part 'themes/popover.dart';
+part 'themes/progresses.dart';
+part 'themes/radio.dart';
+part 'themes/scrollbar.dart';
+part 'themes/segments.dart';
+part 'themes/selection.dart';
+part 'themes/switch.dart';
+part 'themes/tabs.dart';
+part 'themes/tag.dart';
+part 'themes/text.dart';
+part 'themes/toast.dart';
+part 'themes/sidebar.dart';
+part 'themes/label.dart';
+part 'tokens/common.dart';
+part 'tokens/dark.dart';
+part 'tokens/light.dart';
+
+final _light = ThemeConfiguration(
+  _lightTokens,
+  brightness: Brightness.light,
+  avatarTheme: _lightAvatar.initialize(_lightTokens),
+  buttonTheme: _lightButton.initialize(_lightTokens),
+  checkboxTheme: _lightCheckbox.initialize(_lightTokens),
+  chipTheme: _lightChip.initialize(_lightTokens),
+  dotsIndicatorTheme: _lightDotsIndicator.initialize(_lightTokens),
+  circularLoaderTheme: _lightCircularLoader.initialize(_lightTokens),
+  linearLoaderTheme: _lightLinearLoader.initialize(_lightTokens),
+  progressPinTheme: _lightProgressPinTheme.initialize(_lightTokens),
+  circularProgressTheme: _lightCircularProgress.initialize(_lightTokens),
+  linearProgressTheme: _lightLinearProgress.initialize(_lightTokens),
+  radioTheme: _lightRadio.initialize(_lightTokens),
+  segmentedControlTheme: _lightSegmentedControlTheme.initialize(_lightTokens),
+  switchTheme: _lightSwitch.initialize(_lightTokens),
+  tagTheme: _lightTag.initialize(_lightTokens),
+  textAreaTheme: _lightTextArea.initialize(_lightTokens),
+  textInputTheme: _lightTextInput.initialize(_lightTokens),
+  accordionTheme: _lightAccordion.initialize(_lightTokens),
+  alertTheme: _lightAlert.initialize(_lightTokens),
+  authenticationCodeTheme: _lightAuthentication.initialize(_lightTokens),
+  codeTheme: _lightCode.initialize(_lightTokens),
+  listItemTheme: _lightListItem.initialize(_lightTokens),
+  labelTheme: _lightLabel.initialize(_lightTokens),
+  toastTheme: _lightToast.initialize(_lightTokens),
+  breadcrumbsTheme: _lightBreadcrumb.initialize(_lightTokens),
+  carouselTheme: _lightCarousel.initialize(_lightTokens),
+  drawerTheme: _lightDrawer.initialize(_lightTokens),
+  dropdownTheme: _lightDropdown.initialize(_lightTokens),
+  modalTheme: _lightModal.initialize(_lightTokens),
+  popoverTheme: _lightPopover.initialize(_lightTokens),
+  tabBarTheme: _lightTabBar.initialize(_lightTokens),
+  effectsTheme: _lightEffects.initialize(_lightTokens),
+  dividerTheme: _lightDivider.initialize(_lightTokens),
+  scrollbarTheme: _lightScrollbar.initialize(_lightTokens),
+  textSelectionTheme: _lightSelection.initialize(_lightTokens),
+  sidebarTheme: _lightSidebar.initialize(_lightTokens),
+);
+
+final _dark = ThemeConfiguration(
+  _darkTokens,
+  brightness: Brightness.dark,
+  avatarTheme: _darkAvatar.initialize(_darkTokens),
+  buttonTheme: _darkButton.initialize(_darkTokens),
+  checkboxTheme: _darkCheckbox.initialize(_darkTokens),
+  chipTheme: _darkChip.initialize(_darkTokens),
+  dotsIndicatorTheme: _darkDotsIndicator.initialize(_darkTokens),
+  circularLoaderTheme: _darkCircularLoader.initialize(_darkTokens),
+  linearLoaderTheme: _darkLinearLoader.initialize(_darkTokens),
+  progressPinTheme: _darkProgressPinTheme.initialize(_darkTokens),
+  circularProgressTheme: _darkCircularProgress.initialize(_darkTokens),
+  linearProgressTheme: _darkLinearProgress.initialize(_darkTokens),
+  radioTheme: _darkRadio.initialize(_darkTokens),
+  segmentedControlTheme: _darkSegmentedControlTheme.initialize(_darkTokens),
+  switchTheme: _darkSwitch.initialize(_darkTokens),
+  tagTheme: _darkTag.initialize(_darkTokens),
+  textAreaTheme: _darkTextArea.initialize(_darkTokens),
+  textInputTheme: _darkTextInput.initialize(_darkTokens),
+  accordionTheme: _darkAccordion.initialize(_darkTokens),
+  alertTheme: _darkAlert.initialize(_darkTokens),
+  authenticationCodeTheme: _darkAuthentication.initialize(_darkTokens),
+  codeTheme: _darkCode.initialize(_darkTokens),
+  listItemTheme: _darkListItem.initialize(_darkTokens),
+  labelTheme: _darkLabel.initialize(_darkTokens),
+  toastTheme: _darkToast.initialize(_darkTokens),
+  breadcrumbsTheme: _darkBreadcrumbs.initialize(_darkTokens),
+  carouselTheme: _darkCarousel.initialize(_darkTokens),
+  drawerTheme: _darkDrawer.initialize(_darkTokens),
+  dropdownTheme: _darkDropdown.initialize(_darkTokens),
+  modalTheme: _darkModal.initialize(_darkTokens),
+  popoverTheme: _darkPopover.initialize(_darkTokens),
+  tabBarTheme: _darkTabBar.initialize(_darkTokens),
+  effectsTheme: _darkEffects.initialize(_darkTokens),
+  dividerTheme: _darkDivider.initialize(_darkTokens),
+  scrollbarTheme: _darkScrollbar.initialize(_darkTokens),
+  textSelectionTheme: _darkSelection.initialize(_darkTokens),
+  sidebarTheme: _darkSidebar.initialize(_darkTokens),
+);
+
+class Defaults {
+  Defaults._();
+
+  static final lightTokens = _lightTokens;
+  static final darkTokens = _darkTokens;
+
+  static final lightTheme = _light;
+  static final darkTheme = _dark;
+
+  static const locale = defaultLocale;
+  static const supportedLocales = defaultLocales;
+}
